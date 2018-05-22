@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="MainTheme" parent="@style/AppTheme">
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@color/white</item>
+        <!--         <item name="android:windowAnimationStyle">@null</item> -->
+    </style>
+    <!-- Application theme. -->
+    <style name="MyTheme" parent="MainTheme"></style>
+
+    <style name="SplashTheme" parent="@style/AppTheme">
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@drawable/splash</item>
+        <!--         <item name="android:windowAnimationStyle">@null</item> -->
+    </style>
+</resources>

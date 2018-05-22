@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/crm_fufei/!svn/ver/4/code/android/crm2.0-app-android/base_library_pullToRefresh/src/main/res/drawable
+END
+progress_loading.xml
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/crm_fufei/!svn/ver/4/code/android/crm2.0-app-android/base_library_pullToRefresh/src/main/res/drawable/progress_loading.xml
+END
+indicator_bg_top.xml
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/crm_fufei/!svn/ver/4/code/android/crm2.0-app-android/base_library_pullToRefresh/src/main/res/drawable/indicator_bg_top.xml
+END
+indicator_bg_bottom.xml
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svn/crm_fufei/!svn/ver/4/code/android/crm2.0-app-android/base_library_pullToRefresh/src/main/res/drawable/indicator_bg_bottom.xml
+END

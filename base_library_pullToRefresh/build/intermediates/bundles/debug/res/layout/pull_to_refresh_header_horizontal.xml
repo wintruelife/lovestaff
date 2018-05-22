@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#999999">
+
+        <FrameLayout
+            android:id="@+id/fl_inner"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:minWidth="50dp" >
+
+            <ImageView
+                android:id="@+id/pull_to_refresh_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"/>
+
+            <ProgressBar
+                android:id="@+id/pull_to_refresh_progress"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:indeterminateDrawable="@drawable/progress_loading"
+                android:indeterminateBehavior="repeat"
+                android:visibility="gone" />
+        </FrameLayout>
+    </FrameLayout>
+</merge>

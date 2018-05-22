@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="LoadingAnimatorView">
+        <attr format="reference" name="src"/>
+    </declare-styleable>
+
+    <!-- fragment标题指示 -->
+    <declare-styleable name="PagerSlidingTabStrip">
+        <attr name="pstsIndicatorColor" format="color" />
+        <attr name="pstsUnderlineColor" format="color" />
+        <attr name="pstsDividerColor" format="color" />
+        <attr name="pstsSelectedTabTextColor" format="color" />
+        <attr name="pstsSelectedTabBackColor" format="color" />
+        <attr name="pstsTabTextColor" format="color" />
+        <attr name="pstsIndicatorHeight" format="dimension" />
+        <attr name="pstsUnderlineHeight" format="dimension" />
+        <attr name="pstsDividerPadding" format="dimension" />
+        <attr name="pstsTabPaddingLeftRight" format="dimension" />
+        <attr name="pstsTabPaddingTopBottom" format="dimension" />
+        <attr name="pstsScrollOffset" format="dimension" />
+        <attr name="pstsTabBackground" format="reference" />
+        <attr name="pstsShouldExpand" format="boolean" />
+        <attr name="pstsTextAllCaps" format="boolean" />
+        <attr name="pstsIsDraw" format="boolean" />
+        <attr name="pstsShowMaxSize" format="integer" />
+        <attr name="indicatorCenter" format="boolean" />
+    </declare-styleable>
+    <declare-styleable name="CircleImageView">
+        <attr name="border_width" format="dimension" />
+        <attr name="border_color" format="color" />
+    </declare-styleable>
+    <declare-styleable name="ImageCropImageView">
+        <attr name="guidelines">
+            <enum name="on" value="2" />
+            <enum name="onTouch" value="1" />
+            <enum name="off" value="0" />
+        </attr>
+        <attr name="fixAspectRatio" format="boolean" />
+        <attr name="aspectRatioX" format="integer" />
+        <attr name="aspectRatioY" format="integer" />
+        <attr name="imageResource" format="reference" />
+    </declare-styleable>
+    <declare-styleable name="MyRadioButton">
+        <attr name="rbDrawableTopSize" format="dimension"/>
+        <attr name="rbDrawableTop" format="reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="CircleFlowIndicator">
+        <attr name="activeColor" format="color" />
+        <attr name="inactiveColor" format="color" />
+        <attr name="radius" format="dimension" />
+        <attr name="spacing" format="dimension" />
+        <attr name="centered" format="boolean" />
+        <attr name="fadeOut" format="integer" />
+        <attr name="inactiveType">
+            <flag name="stroke" value="0" />
+            <flag name="fill" value="1" />
+        </attr>
+        <attr name="activeType">
+            <flag name="stroke" value="0" />
+            <flag name="fill" value="1" />
+        </attr>
+        <attr name="snap" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="ViewFlow">
+        <attr name="sidebuffer" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="XNumberKeyboardView">
+
+        <!-- 删除按键的图标 -->
+        <attr name="xnkv_deleteDrawable" format="reference" />
+
+        <!-- 删除按键图标的宽度 -->
+        <attr name="xnkv_deleteWidth" format="dimension|reference" />
+
+        <!-- 删除按键图标的高度 -->
+        <attr name="xnkv_deleteHeight" format="dimension|reference" />
+
+        <!-- 删除按键图标的颜色 -->
+        <attr name="xnkv_deleteBackgroundColor" format="color|reference" />
+
+    </declare-styleable>
+    <declare-styleable name="gridPasswordView">
+
+        <attr name="gpvTextColor" format="color|reference" />
+        <attr name="gpvTextSize" format="dimension" />
+
+        <attr name="gpvLineColor" format="color" />
+        <attr name="gpvGridColor" format="color" />
+        <attr name="gpvLineWidth" format="dimension" />
+
+        <attr name="gpvPasswordLength" format="integer" />
+        <attr name="gpvPasswordTransformation" format="string" />
+
+        <attr name="gpvPasswordType" format="enum">
+            <enum name="numberPassword" value="0" />
+            <enum name="textPassword" value="1" />
+            <enum name="textVisiblePassword" value="2" />
+            <enum name="textWebPassword" value="3" />
+        </attr>
+    </declare-styleable>
+    <!--引导页圆圈倒计时dialog-->
+    <declare-styleable name="CountDownProgress">
+        <!-- 圆实心的颜色 -->
+        <attr name="circSolidColor" format="color"></attr>
+        <!-- 圆边框的颜色 -->
+        <attr name="circFrameColor" format="color"></attr>
+        <!-- 进度条的颜色 -->
+        <attr name="progressColor" format="color"></attr>
+        <!-- 文字的颜色 -->
+        <attr name="textColor" format="color"></attr>
+    </declare-styleable>
+
+    <!--首页菜单-->
+    <declare-styleable name="HomeMenu">
+        <!-- 圆实心的颜色 -->
+        <attr name="hasHomeMenu" format="boolean"></attr>
+    </declare-styleable>
+
+</resources>

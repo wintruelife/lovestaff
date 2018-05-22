@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/svn/crm_fufei/!svn/ver/4/code/android/crm2.0-app-android/base_library_pullToRefresh/src/main/java/com/handmark/pulltorefresh/library/internal
+END
+Utils.java
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/svn/crm_fufei/!svn/ver/4/code/android/crm2.0-app-android/base_library_pullToRefresh/src/main/java/com/handmark/pulltorefresh/library/internal/Utils.java
+END
+FlipLoadingLayout.java
+K 25
+svn:wc:ra_dav:version-url
+V 165
+/svn/crm_fufei/!svn/ver/4/code/android/crm2.0-app-android/base_library_pullToRefresh/src/main/java/com/handmark/pulltorefresh/library/internal/FlipLoadingLayout.java
+END
+IndicatorLayout.java
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/svn/crm_fufei/!svn/ver/4/code/android/crm2.0-app-android/base_library_pullToRefresh/src/main/java/com/handmark/pulltorefresh/library/internal/IndicatorLayout.java
+END
+RotateLoadingLayout.java
+K 25
+svn:wc:ra_dav:version-url
+V 167
+/svn/crm_fufei/!svn/ver/4/code/android/crm2.0-app-android/base_library_pullToRefresh/src/main/java/com/handmark/pulltorefresh/library/internal/RotateLoadingLayout.java
+END
+LoadingLayout.java
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/svn/crm_fufei/!svn/ver/4/code/android/crm2.0-app-android/base_library_pullToRefresh/src/main/java/com/handmark/pulltorefresh/library/internal/LoadingLayout.java
+END
+EmptyViewMethodAccessor.java
+K 25
+svn:wc:ra_dav:version-url
+V 171
+/svn/crm_fufei/!svn/ver/4/code/android/crm2.0-app-android/base_library_pullToRefresh/src/main/java/com/handmark/pulltorefresh/library/internal/EmptyViewMethodAccessor.java
+END
+ViewCompat.java
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/svn/crm_fufei/!svn/ver/4/code/android/crm2.0-app-android/base_library_pullToRefresh/src/main/java/com/handmark/pulltorefresh/library/internal/ViewCompat.java
+END
