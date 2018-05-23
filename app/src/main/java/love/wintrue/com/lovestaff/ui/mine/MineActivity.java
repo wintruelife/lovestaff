@@ -2,6 +2,7 @@ package love.wintrue.com.lovestaff.ui.mine;
 
 import android.os.Bundle;
 
+import love.wintrue.com.lovestaff.R;
 import love.wintrue.com.lovestaff.base.BaseActivity;
 
 /**
@@ -12,5 +13,6 @@ public class MineActivity extends BaseActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        super.setContentView(R.layout.activity_mine);
     }
 }

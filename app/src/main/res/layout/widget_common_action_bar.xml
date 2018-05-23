@@ -82,7 +82,7 @@
         android:background="@color/line_color_1"
         android:layout_below="@id/rl_container"/>
 
-    <com.wintrue.ffxs.widget.DataLoadingLayout
+    <love.wintrue.com.lovestaff.widget.DataLoadingLayout
         android:id="@+id/data_loading"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

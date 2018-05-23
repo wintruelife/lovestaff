@@ -41,7 +41,7 @@ public class BaseActivity extends Activity {
     protected InputMethodManager inputMethodManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        MApplication.getInstance().getStackManager().addActivity(this);
+//        MApplication.getInstance().getStackManager().addActivity(this);
         LogUtil.d("onCreate");
         super.onCreate(savedInstanceState);
         THIS = this;
