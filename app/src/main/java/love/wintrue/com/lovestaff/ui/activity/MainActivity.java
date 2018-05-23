@@ -1,9 +1,10 @@
-package love.wintrue.com.lovestaff;
+package love.wintrue.com.lovestaff.ui.activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+import love.wintrue.com.lovestaff.R;
 import love.wintrue.com.lovestaff.base.MApplication;
 import love.wintrue.com.lovestaff.ui.mine.MineActivity;
 import love.wintrue.com.lovestaff.utils.ActivityUtil;

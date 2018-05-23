@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/title_bg"
+    android:orientation="vertical">
+
+    <love.wintrue.com.lovestaff.widget.actionbar.CommonActionBar
+        android:id="@+id/title_actionbar_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dimension_28"
+        android:layout_marginTop="@dimen/dimension_104"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_login"
+            android:layout_width="@dimen/dimension_44"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_login"
+            android:textColor="@color/white"
+            android:textSize="@dimen/dimension_22" />
+
+        <TextView
+            android:id="@+id/tv_register"
+            android:layout_width="@dimen/dimension_44"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dimension_30"
+            android:alpha="0.6"
+            android:text="@string/txt_register"
+            android:textColor="@color/white"
+            android:textSize="@dimen/dimension_22" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/iv_triangle"
+        android:layout_width="@dimen/dimension_15"
+        android:layout_height="@dimen/dimension_8"
+        android:layout_marginLeft="@dimen/dimension_43"
+        android:src="@drawable/triangle" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dimension_15"
+        android:layout_marginRight="@dimen/dimension_15"
+        android:background="@drawable/radius_common_bg"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/dimension_25"
+        android:paddingLeft="@dimen/dimension_15"
+        android:paddingRight="@dimen/dimension_15"
+        android:paddingTop="@dimen/dimension_35">
+
+        <LinearLayout
+            android:id="@+id/ll_login_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <love.wintrue.com.lovestaff.widget.ClearEditText
+                android:id="@+id/et_account"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimension_50"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/radius_common_graybg"
+                android:gravity="left|center_vertical"
+                android:hint="请输入手机号码"
+                android:inputType="text"
+                android:paddingBottom="@dimen/dimension_14"
+                android:paddingLeft="@dimen/dimension_10"
+                android:paddingTop="@dimen/dimension_16"
+                android:textColor="@color/color_969696"
+                android:textSize="14dp" />
+
+            <love.wintrue.com.lovestaff.widget.ClearEditText
+                android:id="@+id/et_pwd"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimension_50"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="@dimen/dimension_10"
+                android:background="@drawable/radius_common_graybg"
+                android:drawablePadding="10dp"
+                android:gravity="left|center_vertical"
+                android:hint="请输入登录密码"
+                android:inputType="text"
+                android:paddingBottom="@dimen/dimension_14"
+                android:paddingLeft="@dimen/dimension_10"
+                android:paddingTop="@dimen/dimension_16"
+                android:textColor="@color/color_969696"
+                android:textSize="14dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginLeft="@dimen/dimension_10"
+                android:layout_marginTop="@dimen/dimension_18"
+                android:text="忘记密码？"
+                android:textColor="@color/color_31b3ef"
+                android:textSize="@dimen/dimension_14" />
+
+            <love.wintrue.com.lovestaff.widget.StateButton
+                android:id="@+id/btn_login"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimension_44"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/btn_register"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/dimension_25"
+                android:background="@null"
+                android:minHeight="0dp"
+                android:minWidth="0dp"
+                android:text="登录"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/dimension_16"
+                app:normalBackgroundColor="@color/color_31b3ef"
+                app:pressedBackgroundColor="@color/color_969696"
+                app:sb_radius="5dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_register_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <love.wintrue.com.lovestaff.widget.ClearEditText
+                android:id="@+id/et_account_register"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimension_50"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/radius_common_graybg"
+                android:gravity="left|center_vertical"
+                android:hint="请输入手机号码"
+                android:inputType="text"
+                android:paddingBottom="@dimen/dimension_14"
+                android:paddingLeft="@dimen/dimension_10"
+                android:paddingTop="@dimen/dimension_16"
+                android:textColor="@color/color_969696"
+                android:textSize="14dp" />
+
+            <love.wintrue.com.lovestaff.widget.StateButton
+                android:id="@+id/btn_register_next"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimension_44"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/btn_register"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/dimension_25"
+                android:background="@null"
+                android:minHeight="0dp"
+                android:minWidth="0dp"
+                android:text="下一步"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/dimension_16"
+                app:normalBackgroundColor="@color/color_31b3ef"
+                app:pressedBackgroundColor="@color/color_969696"
+                app:sb_radius="5dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="@dimen/dimension_10"
+                android:layout_marginTop="@dimen/dimension_18"
+                android:text="点击“下一步”即表示您同意如下协议"
+                android:textColor="@color/color_969696"
+                android:textSize="@dimen/dimension_14" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="@dimen/dimension_10"
+                android:text="《服务协议》 《隐私政策》"
+                android:textColor="@color/color_31b3ef"
+                android:textSize="@dimen/dimension_14" />
+
+
+        </LinearLayout>
+    </FrameLayout>
+</LinearLayout>

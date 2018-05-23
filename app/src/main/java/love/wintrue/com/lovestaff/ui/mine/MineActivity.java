@@ -13,6 +13,15 @@ public class MineActivity extends BaseActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        super.setContentView(R.layout.activity_mine);
+    }
+
+    @Override
+    public int getLayoutId() {
+        return R.layout.activity_mine;
+    }
+
+    @Override
+    public void initView() {
+
     }
 }

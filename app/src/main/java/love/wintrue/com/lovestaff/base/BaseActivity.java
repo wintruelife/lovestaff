@@ -18,36 +18,59 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import butterknife.ButterKnife;
 import love.wintrue.com.lovestaff.receiver.NetChangeObserver;
 import love.wintrue.com.lovestaff.utils.LogUtil;
 import love.wintrue.com.lovestaff.widget.dialog.LoadingDialog;
+import love.wintrue.com.lovestaff.widget.statusbarUtil.StatusBarUtil;
 
 /**
  * @ClassName: BaseBankActivity
  * @Description: 基础activity
  */
-public class BaseActivity extends Activity {
+public abstract class BaseActivity extends Activity {
 
     public Activity THIS;
-    /** 默认提示框 */
+    /**
+     * 默认提示框
+     */
     private Toast mToast;
-    /** 加载等待框 */
+    /**
+     * 加载等待框
+     */
     private LoadingDialog mLoadingDialog;
     protected InputMethodManager inputMethodManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-//        MApplication.getInstance().getStackManager().addActivity(this);
         LogUtil.d("onCreate");
         super.onCreate(savedInstanceState);
-        THIS = this;
-        // 取消标题
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
         inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        THIS = this;
+        doBeforeSetcontentView();
+        setContentView(getLayoutId());
+        ButterKnife.bind(THIS);
+        setStatusBar();
+        initView();
+    }
+
+    //获取布局文件
+    public abstract int getLayoutId();
+
+    //初始化view
+    public abstract void initView();
+
+    protected void setStatusBar() {
+        StatusBarUtil.setTranslucentForImageView(this, 0, null);
+    }
+
+    private void doBeforeSetcontentView() {
+        MApplication.getInstance().getStackManager().addActivity(this);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
     }
 
     protected void hideSoftKeyboard() {
@@ -60,31 +83,31 @@ public class BaseActivity extends Activity {
 
     @Override
     protected void onStart() {
-        LogUtil.d("onStart","onStart");
+        LogUtil.d("onStart", "onStart");
         super.onStart();
     }
 
     @Override
     protected void onResume() {
-        LogUtil.d("onResume","onResume");
+        LogUtil.d("onResume", "onResume");
         super.onResume();
     }
 
     @Override
     protected void onPause() {
-        LogUtil.d("onPause","onPause");
+        LogUtil.d("onPause", "onPause");
         super.onPause();
     }
 
     @Override
     protected void onStop() {
-        LogUtil.d("onStop","onStop");
+        LogUtil.d("onStop", "onStop");
         super.onStop();
     }
 
     @Override
     protected void onDestroy() {
-        LogUtil.d("onDestroy","onDestroy");
+        LogUtil.d("onDestroy", "onDestroy");
         MApplication.getInstance().getStackManager().finishActivity(this);
         super.onDestroy();
     }
@@ -127,19 +150,21 @@ public class BaseActivity extends Activity {
         if (!mLoadingDialog.isShowing() && !isFinishing()) {
             try {
                 mLoadingDialog.show();
-            }catch (Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
     }
 
-    /** 隐藏加载等待框 */
+    /**
+     * 隐藏加载等待框
+     */
     public void hideWaitDialog() {
-        try{
+        try {
             if (mLoadingDialog != null && mLoadingDialog.isShowing()) {
                 mLoadingDialog.dismiss();
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -147,14 +172,22 @@ public class BaseActivity extends Activity {
     /**
      * 网络连接连接时调用
      */
-    public void onConnect(NetChangeObserver.NetType type) {};
+    public void onConnect(NetChangeObserver.NetType type) {
+    }
+
+    ;
 
     /**
      * 当前没有网络连接
      */
-    public void onDisConnect() {};
+    public void onDisConnect() {
+    }
 
-    /** 隐藏系统软键盘 */
+    ;
+
+    /**
+     * 隐藏系统软键盘
+     */
     public void hideSoftInput() {
         if (getCurrentFocus() != null) {
             if (getCurrentFocus().getWindowToken() != null) {
@@ -184,7 +217,7 @@ public class BaseActivity extends Activity {
         }
     }
 
-    public void showSoftInput(View view){
+    public void showSoftInput(View view) {
         if (view == null) {
             hideSoftInput();
             return;
@@ -201,14 +234,16 @@ public class BaseActivity extends Activity {
 
     private Map<Integer, Runnable> allowablePermissionRunnables = new HashMap<>();
     private Map<Integer, Runnable> disallowablePermissionRunnables = new HashMap<>();
+
     /**
      * 请求权限
-     * @param id 请求授权的id 唯一标识即可
-     * @param permission 请求的权限
-     * @param allowableRunnable 同意授权后的操作
+     *
+     * @param id                   请求授权的id 唯一标识即可
+     * @param permission           请求的权限
+     * @param allowableRunnable    同意授权后的操作
      * @param disallowableRunnable 禁止权限后的操作
      */
-    public void requestPermission(int id, String[] permission,String opPermission, Runnable allowableRunnable, Runnable disallowableRunnable) {
+    public void requestPermission(int id, String[] permission, String opPermission, Runnable allowableRunnable, Runnable disallowableRunnable) {
         if (allowableRunnable == null) {
             throw new IllegalArgumentException("allowableRunnable == null");
         }
@@ -229,7 +264,7 @@ public class BaseActivity extends Activity {
                         return;
                     }
                 }
-                try{
+                try {
                     AppOpsManager appOpsManager = (AppOpsManager) getSystemService(Context.APP_OPS_SERVICE);
                     int checkOp = appOpsManager.checkOp(opPermission, MApplication.getInstance().getPackageInfo().applicationInfo.uid, getPackageName());
                     if (checkOp == AppOpsManager.MODE_IGNORED) {
@@ -237,7 +272,7 @@ public class BaseActivity extends Activity {
                         disallowableRunnable.run();
                         return;
                     }
-                }catch (Exception e){
+                } catch (Exception e) {
                     LogUtil.e("allowableRunnable Exception");
                     if (i == permission.length - 1) {
                         allowableRunnable.run();
@@ -249,7 +284,7 @@ public class BaseActivity extends Activity {
                     allowableRunnable.run();
                 }
             }
-        }else {
+        } else {
             allowableRunnable.run();
         }
 
@@ -260,20 +295,20 @@ public class BaseActivity extends Activity {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         boolean isAllow = true;
         LogUtil.e("onRequestPermissionsResult");
-        for (int result:grantResults) {
-            if(result != PackageManager.PERMISSION_GRANTED){
+        for (int result : grantResults) {
+            if (result != PackageManager.PERMISSION_GRANTED) {
                 isAllow = false;
                 break;
             }
         }
         if (isAllow) {
             Runnable allowRun = allowablePermissionRunnables.get(requestCode);
-            if(allowRun != null) {
+            if (allowRun != null) {
                 allowRun.run();
             }
         } else {
             Runnable disallowRun = disallowablePermissionRunnables.get(requestCode);
-            if(disallowRun != null) {
+            if (disallowRun != null) {
                 disallowRun.run();
             }
         }

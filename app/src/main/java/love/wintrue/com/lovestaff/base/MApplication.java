@@ -1,11 +1,13 @@
 package love.wintrue.com.lovestaff.base;
 
 import android.app.Activity;
+import android.app.Application;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.multidex.MultiDex;
 import android.telephony.TelephonyManager;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
@@ -16,7 +18,6 @@ import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
-import love.wintrue.com.lovestaff.MainActivity;
 import love.wintrue.com.lovestaff.bean.GesturePasswordBean;
 import love.wintrue.com.lovestaff.bean.User;
 import love.wintrue.com.lovestaff.config.AppConfig;
@@ -25,7 +26,7 @@ import love.wintrue.com.lovestaff.exception.CrashException;
 import love.wintrue.com.lovestaff.http.ApiService;
 import love.wintrue.com.lovestaff.receiver.NetChangeObserver;
 import love.wintrue.com.lovestaff.receiver.NetworkStateReceiver;
-import love.wintrue.com.lovestaff.utils.ActivityUtil;
+import love.wintrue.com.lovestaff.ui.activity.MainActivity;
 import love.wintrue.com.lovestaff.utils.FrescoImageLoader;
 import love.wintrue.com.lovestaff.utils.ImageDownLoader;
 import love.wintrue.com.lovestaff.utils.ImageUtil;
@@ -46,7 +47,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * @date: 2017/3/22 14:22
  */
 
-public class MApplication extends android.support.multidex.MultiDexApplication {
+public class MApplication extends Application {
     private static final int DEFAULT_TIMEOUT = 30;//网络请求超时时间 秒
 
     private static MApplication mInstance;
@@ -97,6 +98,12 @@ public class MApplication extends android.support.multidex.MultiDexApplication {
         initFresco();
         initActivityLife();
         initPicasso();
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
     }
 
     private void initFresco() {
@@ -248,12 +255,12 @@ public class MApplication extends android.support.multidex.MultiDexApplication {
                 mNetworkAvailable = true;
                 if (mStackManager != null) {
                     Activity activity = mStackManager.getCurrentActivity();
-                    if(activity == null){
+                    if (activity == null) {
                         return;
                     }
-                    if (activity instanceof BaseActivity){
+                    if (activity instanceof BaseActivity) {
                         ((BaseActivity) activity).onConnect(type);
-                    }else if(activity instanceof BaseFragmentActivity){
+                    } else if (activity instanceof BaseFragmentActivity) {
                         ((BaseFragmentActivity) activity).onConnect(type);
                     }
                 }
@@ -265,12 +272,12 @@ public class MApplication extends android.support.multidex.MultiDexApplication {
                 mNetworkAvailable = false;
                 if (mStackManager != null) {
                     Activity activity = mStackManager.getCurrentActivity();
-                    if(activity == null){
+                    if (activity == null) {
                         return;
                     }
-                    if (activity instanceof BaseActivity){
+                    if (activity instanceof BaseActivity) {
                         ((BaseActivity) activity).onDisConnect();
-                    }else if(activity instanceof BaseFragmentActivity){
+                    } else if (activity instanceof BaseFragmentActivity) {
                         ((BaseFragmentActivity) activity).onDisConnect();
                     }
                 }
@@ -311,8 +318,8 @@ public class MApplication extends android.support.multidex.MultiDexApplication {
         return mApiService;
     }
 
-    private void initPicasso(){
-       Picasso.setSingletonInstance(new Picasso.Builder(this).
+    private void initPicasso() {
+        Picasso.setSingletonInstance(new Picasso.Builder(this).
                 downloader(new ImageDownLoader(ImageUtil.getUnsafeOkHttpClient(this)))
                 .build());
     }
@@ -360,10 +367,10 @@ public class MApplication extends android.support.multidex.MultiDexApplication {
                     //app 从后台唤醒，进入前台
                     setIsActive(true);
                     toLock(activity);
-                   setActivityResult(false);
-                }else{
-                    LogUtil.e("isFirstMain:"+isFirstMain);
-                    if(isFirstMain && activity instanceof MainActivity){
+                    setActivityResult(false);
+                } else {
+                    LogUtil.e("isFirstMain:" + isFirstMain);
+                    if (isFirstMain && activity instanceof MainActivity) {
                         isFirstMain = false;
                         toLock(activity);
                     }

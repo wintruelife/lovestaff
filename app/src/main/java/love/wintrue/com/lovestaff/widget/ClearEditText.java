@@ -101,7 +101,7 @@ public class ClearEditText extends AppCompatEditText implements OnFocusChangeLis
 
 	/**
 	 * 设置清除图标的显示与隐藏，调用setCompoundDrawables为EditText绘制上去
-	 * 
+	 *
 	 * @param visible
 	 */
 	protected void setClearIconVisible(boolean visible) {
@@ -126,7 +126,7 @@ public class ClearEditText extends AppCompatEditText implements OnFocusChangeLis
 
 	@Override
 	public void afterTextChanged(Editable s) {
-		                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+
 	}
 
 	/**
@@ -138,7 +138,7 @@ public class ClearEditText extends AppCompatEditText implements OnFocusChangeLis
 
 	/**
 	 * 晃动动画
-	 * 
+	 *
 	 * @param counts
 	 *            1秒钟晃动多少下
 	 * @return
@@ -152,7 +152,7 @@ public class ClearEditText extends AppCompatEditText implements OnFocusChangeLis
 
 	/**
 	 * 设置是否开启OnFocusChangeListener
-	 * 
+	 *
 	 * @param enableFocusChange
 	 */
 	public void setEnableFocusChange(boolean enableFocusChange) {

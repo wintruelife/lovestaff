@@ -52,4 +52,6 @@
     <string name="service_phone">客服电话028-82869536</string>
     <string name="call_service">拨打电话</string>
     <string name="txt_gesture_pwd">手势密码</string>
+
+    <string name="txt_register">注册</string>
 </resources>
