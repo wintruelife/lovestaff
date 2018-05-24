@@ -1,16 +1,19 @@
 package love.wintrue.com.lovestaff.config;
 
-/**
- * @des:
- * @author:th
- * @email:342592622@qq.com
- * @date: 2017/5/16 0016 上午 11:22
- */
 public class AppConfig {
     /**
      * 应用调试模式
      */
     public static final boolean DEBUG_MODE = true;
+    /**
+     * clientID
+     */
+    public static final String CLIENT_ID = "10004";
+
+    /**
+     * SD卡文件存储根目录
+     */
+    public static final String FILE_ROOT_URL = "lovestaffDownlod/";
 
     /**
      * 基础网络请求url
@@ -21,7 +24,7 @@ public class AppConfig {
     /**
      * 应用名称
      */
-    public static final String APP_NAME = "ffxs";
+    public static final String APP_NAME = "lovestaff";
 
     /**
      * 发送carsh报告
@@ -30,7 +33,7 @@ public class AppConfig {
     /**
      * SD卡文件存储根目录
      */
-    public static final String FILE_ROOT_PATH = "ffxsDownlod/";
+    public static final String FILE_ROOT_PATH = "lovestaffDownlod/";
     /**
      * 日志保存路径
      */
