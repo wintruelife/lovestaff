@@ -54,4 +54,8 @@
     <string name="txt_gesture_pwd">手势密码</string>
 
     <string name="txt_register">注册</string>
+
+    <string name="picture_from_camera">拍照</string>
+    <string name="picture_from_album">选择本地图片</string>
+    <string name="image_select_crop_img">正在剪切图片&#8230;</string>
 </resources>
