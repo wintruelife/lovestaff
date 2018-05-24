@@ -114,4 +114,7 @@ dependencies {
     compile 'com.facebook.fresco:fresco:1.3.0'
     compile project(path: ':base_library_pullToRefresh')
     compile files('libs/eventbus.jar')
+    compile files('libs/uk-co-senab-photoview.jar')
+    compile 'com.youth.banner:banner:1.4.9'
+    compile 'com.android.support:multidex:1.0.1'
 }
