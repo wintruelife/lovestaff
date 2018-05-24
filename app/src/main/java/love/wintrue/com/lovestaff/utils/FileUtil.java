@@ -8,11 +8,14 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
 import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
 import android.text.TextUtils;
 import android.widget.Toast;
 
+import org.json.JSONObject;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
@@ -30,9 +33,16 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 import love.wintrue.com.lovestaff.base.MApplication;
 import love.wintrue.com.lovestaff.config.AppConfig;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -212,6 +222,9 @@ public class FileUtil {
         return file;
     }
 
+    public static String getSDFilePath(String dir, String fileName){
+        return getSDPath() + dir + fileName;
+    }
     /**
      * 在SD卡上创建目录
      *
@@ -665,65 +678,85 @@ public class FileUtil {
         }
     }
 
-//    /**
-//     * 上传文件
-//     * @param fileName 文件名称
-//     * @param file 文件
-//     * @param handler 上传文件监听handler 1上传成功,并且返回url在obj里面 0上传失败
-//     * @param tag 上传文件tag标记 在handdler的arg1里面
-//     */
-//    public static void uploadFile(String fileName, File file, final Handler handler,final int tag) {
-//        RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
-//        MultipartBody.Part body = MultipartBody.Part.createFormData("pic", file.getName(), requestFile);
-//        Map<String, Object> params = new HashMap<>();
-//        HttpTaskUtil.addGlobParams(params,MApplication.getInstance());
-//        Call<ResponseBody> call = MApplication.getInstance().iniApiService(180).uploadFile(params,fileName, body);
-//        call.enqueue(new Callback<ResponseBody>() {
-//            @Override
-//            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-//                Message msg = handler.obtainMessage();
-//                if(response.code() == 200) {
-//                    try {
-//                        String data = new String(response.body().bytes());
-//                        JSONObject jsonObject = new JSONObject(data);
-//                        String code = jsonObject.getString("code");
-//                        if (code.endsWith("000000")) {
-//                            JSONObject resultMap = jsonObject.getJSONObject("resultMap");
-//                            msg.what = 1;
-//                            msg.obj = resultMap.optString("url");
-//                            msg.arg1 = tag;
-//                        } else {
-//                            msg.what = 0;
-//                            msg.obj = jsonObject.optString("description");
-//                        }
-//                    }catch (Exception e) {
-//                        e.printStackTrace();
-//                    }
-//                }else{
-//                    try {
-//                        msg.obj = response.errorBody().string();
-//                        msg.what = 0;
-//                    }catch (Exception e){
-//                        e.printStackTrace();
-//                    }
-//                }
-//                msg.sendToTarget();
-//            }
-//
-//            @Override
-//            public void onFailure(Call<ResponseBody> call, Throwable t) {
-//                Message msg = handler.obtainMessage();
-//                try{
-//                    msg.obj = t.getMessage();
-//                }catch (Exception e){
-//                    msg.obj = "网络请求超时";
-//                }
-//                msg.what = 0;
-//                msg.sendToTarget();
-//            }
-//        });
-//
-//    }
+    /**
+     * 上传文件
+     * @param fileName 文件名称
+     * @param file 文件
+     * @param handler 上传文件监听handler 1上传成功,并且返回url在obj里面 0上传失败
+     * @param tag 上传文件tag标记 在handdler的arg1里面
+     */
+    public static void uploadFile(String fileName, File file, final Handler handler,final int tag) {
+        RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+        MultipartBody.Part body = MultipartBody.Part.createFormData("pic", file.getName(), requestFile);
+        Call<ResponseBody> call = MApplication.getInstance().iniApiService(180).uploadFile(getHeaders(),fileName, body);
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                Message msg = handler.obtainMessage();
+                if(response.code() == 200) {
+                    try {
+                        String data = new String(response.body().bytes());
+                        JSONObject jsonObject = new JSONObject(data);
+                        String code = jsonObject.getString("code");
+                        if (code.endsWith("000000")) {
+                            JSONObject resultMap = jsonObject.getJSONObject("resultMap");
+                            msg.what = 1;
+                            msg.obj = resultMap.optString("url");
+                            msg.arg1 = tag;
+                        } else {
+                            msg.what = 0;
+                            msg.obj = jsonObject.optString("description");
+                        }
+                    }catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }else{
+                    try {
+                        msg.obj = response.errorBody().string();
+                        msg.what = 0;
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
+                msg.sendToTarget();
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Message msg = handler.obtainMessage();
+                try{
+                    msg.obj = t.getMessage();
+                }catch (Exception e){
+                    msg.obj = "网络请求超时";
+                }
+                msg.what = 0;
+                msg.sendToTarget();
+            }
+        });
+
+    }
+
+    private static Map<String,Object> getHeaders(){
+        String date = DateUtil.dateToStr(new Date(), "yyyy-MM-dd HH:mm:ss");
+        Map<String, Object> params = new HashMap<>();
+        Map<String, Object> mDataTemps = new HashMap<>();
+        String requestId = UUID.randomUUID().toString();
+        params.put("token", TextUtils.isEmpty(MApplication.getInstance().getUser().getToken()) ? "" : MApplication.getInstance().getUser().getToken());
+        params.put("passed", "1");
+        params.put("passed_type", "3DES");
+        params.put("dev", MApplication.getInstance().getDeviceInfo());
+        params.put("sign_type", "MD5");
+        params.put("did", MApplication.getInstance().getAppUniqueID());
+        params.put("versionCode", MApplication.getInstance().getVersionCode());
+        params.put("version", MApplication.getInstance().getVersion());
+//        params.put("net", NetworkStateReceiver.getNetworkType(mContext));
+        params.put("timestamp", date);
+        params.put("sign", MD5.MD5Encode(Util.getSign(mDataTemps)));
+        params.put("Accept", "application/json");
+        params.put("apptype", "1");
+        params.put("ostype", "1");
+        return params;
+    }
 
     /**
      * 下载文件
@@ -762,7 +795,7 @@ public class FileUtil {
                 Environment.MEDIA_MOUNTED)) {
             File file;
             try {
-                file = FileUtil.createSDFile(AppConfig.FILE_ROOT_PATH, fileName);
+                file = FileUtil.createSDFile(AppConfig.FILE_ROOT_URL, fileName);
                 LogUtil.e("path:", file.getPath() + "");
                 return file;
             } catch (IOException e) {
@@ -794,7 +827,7 @@ public class FileUtil {
             if (filePath.endsWith(".apk")) {
                 if (Build.VERSION.SDK_INT >= 24) {//判读版本是否在7.0以上
                     File file = new File(filePath);
-                    Uri apkUri = FileProvider.getUriForFile(context, context.getPackageName()+".fileprovider", file);//在AndroidManifest中的android:authorities值
+                    Uri apkUri = FileProvider.getUriForFile(context, "com.ytsh.finance.fileprovider", file);//在AndroidManifest中的android:authorities值
                     Intent install = new Intent(Intent.ACTION_VIEW);
                     install.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     install.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);//添加这一句表示对目标应用临时授权该Uri所代表的文件
@@ -808,6 +841,15 @@ public class FileUtil {
                 }
                 MApplication.getInstance().exit();
             }
+        }
+    }
+
+    public static Uri getImageUri(Context context,File file) {
+        int currentapiVersion = Build.VERSION.SDK_INT;
+        if(currentapiVersion < 24) {
+            return Uri.fromFile(file);
+        }else{
+            return FileProvider.getUriForFile(context, "com.ytsh.finance.fileprovider", file);
         }
     }
 }

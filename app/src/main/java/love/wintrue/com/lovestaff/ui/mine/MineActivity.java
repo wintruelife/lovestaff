@@ -14,6 +14,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import love.wintrue.com.lovestaff.R;
 import love.wintrue.com.lovestaff.base.BaseActivity;
+import love.wintrue.com.lovestaff.utils.ActivityUtil;
 import love.wintrue.com.lovestaff.widget.actionbar.CommonActionBar;
 
 /**
@@ -81,6 +82,7 @@ public class MineActivity extends BaseActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.mine_user_info:
+                ActivityUtil.next(MineActivity.this,UserInfoActivity.class);
                 break;
             case R.id.mine_wdfl:
                 break;
