@@ -52,7 +52,7 @@ public class RegisterAndLoginActivity extends BaseActivity {
 
     @Override
     public void initView() {
-        ActivityUtil.next(this, MineActivity.class);
+//        ActivityUtil.next(this, MineActivity.class);
         cab.setLeftImgBtnWithBg(R.mipmap.nav_bar_back_icon, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
