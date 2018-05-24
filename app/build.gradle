@@ -4,7 +4,7 @@ android {
     compileSdkVersion 25
     buildToolsVersion "25.0.0"
     defaultConfig {
-        applicationId "com.wintrue.ffxs"
+        applicationId "love.wintrue.com.lovestaff"
         minSdkVersion 16
         targetSdkVersion 23
         versionCode 1

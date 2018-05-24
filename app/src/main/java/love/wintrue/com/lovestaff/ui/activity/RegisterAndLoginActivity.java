@@ -10,6 +10,8 @@ import android.widget.TextView;
 import butterknife.Bind;
 import love.wintrue.com.lovestaff.R;
 import love.wintrue.com.lovestaff.base.BaseActivity;
+import love.wintrue.com.lovestaff.ui.mine.MineActivity;
+import love.wintrue.com.lovestaff.utils.ActivityUtil;
 import love.wintrue.com.lovestaff.utils.AnimationUtils;
 import love.wintrue.com.lovestaff.widget.StateButton;
 import love.wintrue.com.lovestaff.widget.actionbar.CommonActionBar;
@@ -50,6 +52,7 @@ public class RegisterAndLoginActivity extends BaseActivity {
 
     @Override
     public void initView() {
+        ActivityUtil.next(this, MineActivity.class);
         cab.setLeftImgBtnWithBg(R.mipmap.nav_bar_back_icon, new View.OnClickListener() {
             @Override
             public void onClick(View v) {

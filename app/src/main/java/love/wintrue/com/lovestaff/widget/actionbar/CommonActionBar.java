@@ -361,6 +361,26 @@ public class CommonActionBar extends RelativeLayout {
     }
 
     /**
+     * 设置右边图标按钮及事件
+     *
+     * @param imageResId      资源ID
+     * @param onClickListener 事件
+     */
+    public void setRightImgBtn(int imageResId,OnClickListener onClickListener) {
+        if (imageResId <= 0) {
+            mImgBtnRight.setVisibility(View.GONE);
+        } else {
+            mImgBtnRight.setVisibility(View.VISIBLE);
+        }
+
+        mImgBtnRight.setBackgroundResource(imageResId);
+        mImgBtnRight.setOnClickListener(onClickListener);
+        // 隐藏右边文字按钮
+        mTxtBtnRight.setVisibility(View.GONE);
+    }
+
+
+    /**
      * 设置右边图标按钮是否显示
      *
      * @param visibility
