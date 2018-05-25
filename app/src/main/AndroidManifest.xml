@@ -69,6 +69,16 @@
             </intent-filter>
         </activity>
 
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}.android7.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
         <activity
             android:name="love.wintrue.com.lovestaff.ui.mine.MineActivity"
             android:configChanges="orientation|keyboardHidden"
@@ -100,6 +110,13 @@
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait"
             />
+
+        <activity
+            android:name="love.wintrue.com.lovestaff.ui.activity.ImproveInformationActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            />
+
     </application>
 
 </manifest>

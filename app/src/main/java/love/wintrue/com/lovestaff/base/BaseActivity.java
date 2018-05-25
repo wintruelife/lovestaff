@@ -44,6 +44,7 @@ public abstract class BaseActivity extends Activity {
      */
     private LoadingDialog mLoadingDialog;
     protected InputMethodManager inputMethodManager;
+    public static int colors[] = {0xffFF9B4C, 0xffFF2F50, 0xffFF2F50};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

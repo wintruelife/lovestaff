@@ -4,7 +4,7 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-    <com.ytsh.finance.image.CropImageView
+    <love.wintrue.com.lovestaff.image.CropImageView
         xmlns:custom="http://schemas.android.com/apk/res-auto"
         android:id="@+id/CropImageView"
         android:layout_width="match_parent"

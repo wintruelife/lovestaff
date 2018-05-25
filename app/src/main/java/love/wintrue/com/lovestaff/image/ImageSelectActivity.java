@@ -32,8 +32,8 @@ import love.wintrue.com.lovestaff.utils.ImageUtil;
 import love.wintrue.com.lovestaff.utils.LogUtil;
 
 /**
- * @desc 获取图片
  * @author th
+ * @desc 获取图片
  * @time 2017/3/13 13:46
  */
 public class ImageSelectActivity extends BaseActivity implements OnClickListener {
@@ -62,6 +62,7 @@ public class ImageSelectActivity extends BaseActivity implements OnClickListener
     protected int activityCloseEnterAnimation;
 
     protected int activityCloseExitAnimation;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,8 +91,8 @@ public class ImageSelectActivity extends BaseActivity implements OnClickListener
             mCameraImagePath = extras.getString("image-path");
             mCameraImageUri = extras.getParcelable("image-path-uri");
             mViewImageUrl = extras.getString("view-image-uri");
-            mAspectRatioX = extras.getInt("aspectRatioX",mAspectRatioX);
-            mAspectRatioY = extras.getInt("aspectRatioY",mAspectRatioY);
+            mAspectRatioX = extras.getInt("aspectRatioX", mAspectRatioX);
+            mAspectRatioY = extras.getInt("aspectRatioY", mAspectRatioY);
             if (mCameraImageUri == null) {
                 if (extras.containsKey("image-path")) {
                     mCameraImageUri = getImageUri(mCameraImagePath);
@@ -110,14 +111,14 @@ public class ImageSelectActivity extends BaseActivity implements OnClickListener
         initAnim();
     }
 
-    void initAnim(){
-        TypedArray activityStyle = getTheme().obtainStyledAttributes(new int[] {android.R.attr.windowAnimationStyle});
+    void initAnim() {
+        TypedArray activityStyle = getTheme().obtainStyledAttributes(new int[]{android.R.attr.windowAnimationStyle});
 
         int windowAnimationStyleResId = activityStyle.getResourceId(0, 0);
 
         activityStyle.recycle();
 
-        activityStyle = getTheme().obtainStyledAttributes(windowAnimationStyleResId, new int[] {android.R.attr.activityCloseEnterAnimation, android.R.attr.activityCloseExitAnimation});
+        activityStyle = getTheme().obtainStyledAttributes(windowAnimationStyleResId, new int[]{android.R.attr.activityCloseEnterAnimation, android.R.attr.activityCloseExitAnimation});
 
         activityCloseEnterAnimation = activityStyle.getResourceId(0, 0);
 
@@ -125,6 +126,7 @@ public class ImageSelectActivity extends BaseActivity implements OnClickListener
 
         activityStyle.recycle();
     }
+
     /**
      * 打开手机相册
      */
@@ -145,7 +147,7 @@ public class ImageSelectActivity extends BaseActivity implements OnClickListener
             return;
         }
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION|Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
         intent.putExtra("noFaceDetection", false);
         startActivityForResult(intent, REQ_RESULT_PHOTO_CODE);
     }
@@ -154,7 +156,7 @@ public class ImageSelectActivity extends BaseActivity implements OnClickListener
      * 打开照相机
      */
     private void openCamera() {
-        if(Util.isFastDoubleClick()){
+        if (Util.isFastDoubleClick()) {
             return;
         }
         if (android.os.Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED)) {
@@ -173,7 +175,7 @@ public class ImageSelectActivity extends BaseActivity implements OnClickListener
             return;
         }
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION|Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, mCameraImageUri);
         intent.putExtra("return-data", true);
         startActivityForResult(intent, REQ_RESULT_CAPTURE_CODE);
@@ -181,10 +183,10 @@ public class ImageSelectActivity extends BaseActivity implements OnClickListener
 
     private Uri getImageUri(String path) {
         int currentapiVersion = android.os.Build.VERSION.SDK_INT;
-        if(currentapiVersion < 24) {
+        if (currentapiVersion < 24) {
             return Uri.fromFile(new File(path));
-        }else{
-            return FileProvider.getUriForFile(this, "com.ytsh.finance.fileprovider", new File(path));
+        } else {
+            return FileProvider.getUriForFile(this, getPackageName() + ".android7.fileprovider", new File(path));
         }
     }
 
@@ -222,7 +224,7 @@ public class ImageSelectActivity extends BaseActivity implements OnClickListener
             public void run() {
                 try {
                     openCamera();
-                }catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                     showToastMsg("您已拒绝拍照权限，为了您更好的体验，请到应用权限管理中心设置权限!");
                 }
@@ -263,7 +265,7 @@ public class ImageSelectActivity extends BaseActivity implements OnClickListener
     private void crop(Intent data) {
         if (mIsCrop) {
             Intent intent = new Intent(ImageSelectActivity.this, ImageCropActivity.class);
-            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION|Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
             intent.putExtra("image-path", mCameraImagePath);
             if (data != null) {
                 Uri imageUri = data.getData();
@@ -272,14 +274,14 @@ public class ImageSelectActivity extends BaseActivity implements OnClickListener
             intent.putExtra("rotate", true);
             intent.putExtra("scale", true);
             intent.putExtra("fixedAspectRatio", mFixedAspectRatio);
-            intent.putExtra("aspectRatioX",mAspectRatioX);
-            intent.putExtra("aspectRatioY",mAspectRatioY);
+            intent.putExtra("aspectRatioX", mAspectRatioX);
+            intent.putExtra("aspectRatioY", mAspectRatioY);
             startActivityForResult(intent, REQ_RESULT_CORP_CODE);
         } else {
             Uri imageUri;
             if (data != null) {
                 imageUri = data.getData();
-            }else{
+            } else {
                 imageUri = getImageUri(mCameraImagePath);
             }
             Bitmap selectedImage = ImageUtil.getBitmap(this, imageUri);

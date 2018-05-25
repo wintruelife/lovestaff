@@ -10,7 +10,7 @@
         tools:ignore="contentDescription"
         android:adjustViewBounds="true" />
 
-    <com.ytsh.finance.image.CropOverlayView
+    <love.wintrue.com.lovestaff.image.CropOverlayView
         android:id="@+id/CropOverlayView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
