@@ -12,7 +12,7 @@ public class DensityUtil {
 
     /**
      * 将dip或dp值转换为px值，保证尺寸大小不变
-     * 
+     *
      * @param dipValue
      */
     public static int dip2px(Context context, float dipValue) {
@@ -22,7 +22,7 @@ public class DensityUtil {
 
     /**
      * 将px值转换为dip或dp值，保证尺寸大小不变
-     * 
+     *
      * @param pxValue
      */
     public static int px2dip(Context context, float pxValue) {
@@ -32,7 +32,7 @@ public class DensityUtil {
 
     /**
      * 将px值转换为sp值，保证文字大小不变
-     * 
+     *
      * @param pxValue
      * @return
      */
@@ -43,7 +43,7 @@ public class DensityUtil {
 
     /**
      * 将px值转换为sp值，保证文字大小不变
-     * 
+     *
      * @param spValue
      * @return
      */
@@ -51,9 +51,10 @@ public class DensityUtil {
         final float fontScale = context.getResources().getDisplayMetrics().scaledDensity;
         return (int) (spValue * fontScale + 0.5f);
     }
-    
+
     /**
      * 获取屏幕宽度
+     *
      * @return
      */
     public static int getScreenWidth(Activity activity) {
@@ -68,6 +69,7 @@ public class DensityUtil {
 
     /**
      * 获取屏幕高度
+     *
      * @return
      */
     public static int getScreenHeight(Activity activity) {
@@ -80,7 +82,9 @@ public class DensityUtil {
         return 0;
     }
 
-    /**获取虚拟功能键高度 */
+    /**
+     * 获取虚拟功能键高度
+     */
     public static int getVirtualBarHeight(Context context) {
         int vh = 0;
         WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
@@ -99,7 +103,7 @@ public class DensityUtil {
         return vh;
     }
 
-    public static int getStatusHeight(Context context){
+    public static int getStatusHeight(Context context) {
         int result = 0;
         int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
         if (resourceId > 0) {

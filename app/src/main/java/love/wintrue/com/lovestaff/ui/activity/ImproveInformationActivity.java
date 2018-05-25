@@ -2,7 +2,6 @@ package love.wintrue.com.lovestaff.ui.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.content.ContextCompat;
 import android.text.InputType;
 import android.view.View;
 import android.widget.ImageView;
@@ -47,14 +46,13 @@ public class ImproveInformationActivity extends BaseActivity {
     @Override
     public void initView() {
         cab.setActionBarTitle("完善个人信息");
-        cab.setLeftImgBtnWithBg(R.mipmap.nav_bar_back_icon, new View.OnClickListener() {
+        cab.setLeftImgBtn(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
-        cab.setTitleColor(ContextCompat.getColor(THIS, R.color.white));
-        cab.setBackground(ContextCompat.getDrawable(THIS, R.drawable.title_bg));
+
         btnJoin.setNormalBackgroundColor(colors);
 
         ivPwdVisible.setOnClickListener(new View.OnClickListener() {

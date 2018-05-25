@@ -42,7 +42,7 @@
             android:drawablePadding="10dp"
             android:gravity="left|center_vertical"
             android:hint="请设置一个登录密码"
-            android:inputType="text"
+            android:inputType="textPassword"
             android:textColor="@color/color_242424"
             android:textColorHint="@color/color_969696"
             android:textSize="@dimen/dimension_14" />
@@ -54,7 +54,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="@dimen/dimension_15"
-            android:src="@mipmap/icon_yj_dk" />
+            android:src="@mipmap/icon_yj_gb" />
     </RelativeLayout>
 
     <RelativeLayout

@@ -49,6 +49,8 @@ public class RegisterAndLoginActivity extends BaseActivity {
     TextView tvCountDown;
     @Bind(R.id.et_account_register)
     ClearEditText etAccountRegister;
+    @Bind(R.id.tv_forget_pwd)
+    TextView tvForgetPwd;
 
     private int[] start_location;
     private int[] end_location;
@@ -89,16 +91,14 @@ public class RegisterAndLoginActivity extends BaseActivity {
             }
         };
 
-        cab.setLeftImgBtnWithBg(R.mipmap.nav_bar_back_icon, new View.OnClickListener() {
+        cab.setActionBarTitle("爱员工");
+        cab.setLeftImgBtn(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
-        cab.setActionBarTitle("爱员工");
-        cab.setActionBarSeparationLineVisiable(View.GONE);
-        cab.setTitleColor(ContextCompat.getColor(THIS, R.color.white));
-        cab.setBackground(ContextCompat.getDrawable(THIS, R.drawable.title_bg));
+
 
         btnLogin.setNormalBackgroundColor(colors);
         btnRegisterNext.setNormalBackgroundColor(colors);
@@ -169,6 +169,13 @@ public class RegisterAndLoginActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 startCountDown();
+            }
+        });
+
+        tvForgetPwd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ActivityUtil.next(THIS,ForgetPasswordActivity.class);
             }
         });
     }
