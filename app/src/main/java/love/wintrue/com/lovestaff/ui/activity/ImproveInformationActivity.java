@@ -2,6 +2,8 @@ package love.wintrue.com.lovestaff.ui.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.support.v4.content.ContextCompat;
 import android.text.InputType;
 import android.view.View;
 import android.widget.ImageView;
@@ -10,6 +12,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.yuyh.library.imgsel.ImageLoader;
 import com.yuyh.library.imgsel.ImgSelActivity;
+import com.yuyh.library.imgsel.ImgSelConfig;
 
 import java.util.List;
 
@@ -98,22 +101,22 @@ public class ImproveInformationActivity extends BaseActivity {
      * 开启图片选择器
      */
     private void choosePhoto() {
-//        ImgSelConfig config = new ImgSelConfig.Builder(loader)
-//                // 是否多选
-//                .multiSelect(false)
-//                // 确定按钮背景色
-//                .btnBgColor(Color.TRANSPARENT)
-//                .titleBgColor(ContextCompat.getColor(this, R.color.colorPrimary))
-//                // 使用沉浸式状态栏
-//                .statusBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark))
-//                .title("图片")
-//                // 第一个是否显示相机
-//                .needCamera(true)
-//                // 最大选择图片数量
-//                .maxNum(1)
-//                .needCrop(true)
-//                .build();
-//        ImgSelActivity.startActivity(this, config, REQUEST_CODE);
+        ImgSelConfig config = new ImgSelConfig.Builder(loader)
+                // 是否多选
+                .multiSelect(false)
+                // 确定按钮背景色
+                .btnBgColor(Color.TRANSPARENT)
+                .titleBgColor(ContextCompat.getColor(this, R.color.colorPrimary))
+                // 使用沉浸式状态栏
+                .statusBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark))
+                .title("图片")
+                // 第一个是否显示相机
+                .needCamera(true)
+                // 最大选择图片数量
+                .maxNum(1)
+                .needCrop(true)
+                .build();
+        ImgSelActivity.startActivity(this, config, REQUEST_CODE);
     }
 
     private ImageLoader loader = new ImageLoader() {
