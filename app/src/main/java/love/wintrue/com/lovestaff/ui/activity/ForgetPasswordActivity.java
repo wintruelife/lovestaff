@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import butterknife.Bind;
+import butterknife.OnClick;
 import love.wintrue.com.lovestaff.R;
 import love.wintrue.com.lovestaff.base.BaseActivity;
 import love.wintrue.com.lovestaff.utils.ActivityUtil;
@@ -72,33 +73,25 @@ public class ForgetPasswordActivity extends BaseActivity {
         });
         btnForgetNext2.setNormalBackgroundColor(colors);
         btnForgetNext.setNormalBackgroundColor(colors);
-        btnForgetNext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+    }
+
+    @OnClick({R.id.btn_forget_next, R.id.btn_forget_next2, R.id.tv_count_down})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.btn_forget_next:
                 llForgetOne.setVisibility(View.GONE);
                 llForgetTwo.setVisibility(View.VISIBLE);
                 startCountDown();
-            }
-        });
-
-        btnForgetNext2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+                break;
+            case R.id.btn_forget_next2:
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("intentFrom", "ForgetPasswordActivity");
                 ActivityUtil.next(THIS, ChangePasswordActivity.class, bundle, false);
-            }
-        });
-
-        /**
-         * 发送短信TextView点击
-         */
-        tvCountDown.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+                break;
+            case R.id.tv_count_down:
                 startCountDown();
-            }
-        });
+                break;
+        }
     }
 
     /**

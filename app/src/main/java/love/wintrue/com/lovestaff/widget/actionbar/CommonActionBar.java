@@ -118,7 +118,7 @@ public class CommonActionBar extends RelativeLayout {
         vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
-                virtualStatusBar.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                virtualStatusBar.getViewTreeObserver().removeOnGlobalLayoutListener(this);
                 ViewGroup.LayoutParams lp;
                 lp = virtualStatusBar.getLayoutParams();
                 lp.width = ViewGroup.LayoutParams.MATCH_PARENT;

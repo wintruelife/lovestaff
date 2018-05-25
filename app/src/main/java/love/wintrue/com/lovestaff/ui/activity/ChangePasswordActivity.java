@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import butterknife.Bind;
+import butterknife.OnClick;
 import love.wintrue.com.lovestaff.R;
 import love.wintrue.com.lovestaff.base.BaseActivity;
 import love.wintrue.com.lovestaff.widget.ClearEditText;
@@ -64,17 +65,16 @@ public class ChangePasswordActivity extends BaseActivity {
 
         btnChangePwdConfirm.setNormalBackgroundColor(colors);
         btnChangePwdNext.setNormalBackgroundColor(colors);
-        btnChangePwdNext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+    }
+
+    @OnClick({R.id.btn_change_pwd_next, R.id.iv_pwd_visible, R.id.iv_setpwd_visible})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.btn_change_pwd_next:
                 llChangePwdOne.setVisibility(View.GONE);
                 llChangePwdTwo.setVisibility(View.VISIBLE);
-            }
-        });
-
-        ivPwdVisible.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+                break;
+            case R.id.iv_pwd_visible:
                 int index = etPwd.getSelectionStart();
                 if (password_visual) {
                     password_visual = false;
@@ -87,17 +87,13 @@ public class ChangePasswordActivity extends BaseActivity {
                     ivPwdVisible.setImageDrawable(getResources().getDrawable(R.mipmap.icon_yj_dk));
                 }
                 etPwd.setSelection(index);
-            }
-        });
-
-        ivSetPwdVisible.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int index = 0;
+                break;
+            case R.id.iv_setpwd_visible:
+                int indexTwo = 0;
                 if (etSetPwd.hasFocus()) {
-                    index = etSetPwd.getSelectionStart();
+                    indexTwo = etSetPwd.getSelectionStart();
                 } else if (etConfirmPwd.hasFocus()) {
-                    index = etConfirmPwd.getSelectionStart();
+                    indexTwo = etConfirmPwd.getSelectionStart();
                 }
                 if (changePassword_visual) {
                     changePassword_visual = false;
@@ -114,11 +110,11 @@ public class ChangePasswordActivity extends BaseActivity {
                 }
 
                 if (etSetPwd.hasFocus()) {
-                    etSetPwd.setSelection(index);
+                    etSetPwd.setSelection(indexTwo);
                 } else if (etConfirmPwd.hasFocus()) {
-                    etConfirmPwd.setSelection(index);
+                    etConfirmPwd.setSelection(indexTwo);
                 }
-            }
-        });
+                break;
+        }
     }
 }

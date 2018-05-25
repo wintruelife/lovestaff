@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import butterknife.Bind;
+import butterknife.OnClick;
 import love.wintrue.com.lovestaff.R;
 import love.wintrue.com.lovestaff.base.BaseActivity;
 import love.wintrue.com.lovestaff.utils.ActivityUtil;
@@ -99,30 +100,21 @@ public class RegisterAndLoginActivity extends BaseActivity {
             }
         });
 
-
         btnLogin.setNormalBackgroundColor(colors);
         btnRegisterNext.setNormalBackgroundColor(colors);
         btnRegisterNext2.setNormalBackgroundColor(colors);
+    }
 
-        /**
-         * 登录标签点击
-         */
-        tvLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+    @OnClick({R.id.tv_login, R.id.tv_register, R.id.btn_register_next, R.id.btn_register_next2, R.id.tv_count_down, R.id.tv_forget_pwd})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.tv_login:
                 llLoginView.setVisibility(View.VISIBLE);
                 llRegisterView.setVisibility(View.GONE);
                 llRegisterView2.setVisibility(View.GONE);
                 startAnim("moveLeft");
-            }
-        });
-
-        /**
-         * 注册标签点击
-         */
-        tvRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+                break;
+            case R.id.tv_register:
                 llLoginView.setVisibility(View.GONE);
                 if (!registerHasNext) {
                     llRegisterView2.setVisibility(View.GONE);
@@ -133,15 +125,8 @@ public class RegisterAndLoginActivity extends BaseActivity {
                 }
 
                 startAnim("moveRight");
-            }
-        });
-
-        /**
-         * 注册标签里下一步点击
-         */
-        btnRegisterNext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+                break;
+            case R.id.btn_register_next:
                 if (!Util.isValidMobileNumber(etAccountRegister.getText().toString())) {
                     showToastMsg("请输入正确的手机号码");
                     return;
@@ -152,32 +137,17 @@ public class RegisterAndLoginActivity extends BaseActivity {
                 llRegisterView2.setVisibility(View.VISIBLE);
 
                 startCountDown();
-            }
-        });
-
-        btnRegisterNext2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ActivityUtil.next(THIS,ImproveInformationActivity.class);
-            }
-        });
-
-        /**
-         * 发送短信TextView点击
-         */
-        tvCountDown.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+                break;
+            case R.id.btn_register_next2:
+                ActivityUtil.next(THIS, ImproveInformationActivity.class);
+                break;
+            case R.id.tv_count_down:
                 startCountDown();
-            }
-        });
-
-        tvForgetPwd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ActivityUtil.next(THIS,ForgetPasswordActivity.class);
-            }
-        });
+                break;
+            case R.id.tv_forget_pwd:
+                ActivityUtil.next(THIS, ForgetPasswordActivity.class);
+                break;
+        }
     }
 
     /**

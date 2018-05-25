@@ -14,6 +14,7 @@ import com.yuyh.library.imgsel.ImgSelActivity;
 import java.util.List;
 
 import butterknife.Bind;
+import butterknife.OnClick;
 import love.wintrue.com.lovestaff.R;
 import love.wintrue.com.lovestaff.base.BaseActivity;
 import love.wintrue.com.lovestaff.widget.ClearEditText;
@@ -54,10 +55,12 @@ public class ImproveInformationActivity extends BaseActivity {
         });
 
         btnJoin.setNormalBackgroundColor(colors);
+    }
 
-        ivPwdVisible.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+    @OnClick({R.id.iv_pwd_visible, R.id.iv_avatar})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.iv_pwd_visible:
                 int index = etPwd.getSelectionStart();
                 if (password_visual) {
                     password_visual = false;
@@ -70,15 +73,11 @@ public class ImproveInformationActivity extends BaseActivity {
                     ivPwdVisible.setImageDrawable(getResources().getDrawable(R.mipmap.icon_yj_dk));
                 }
                 etPwd.setSelection(index);
-            }
-        });
-
-        ivAvatar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+                break;
+            case R.id.iv_avatar:
                 choosePhoto();
-            }
-        });
+                break;
+        }
     }
 
     @Override
