@@ -76,7 +76,7 @@
                     android:padding="0dp"
                     android:textColor="@color/white"
                     android:text="完成"
-                    android:visibility="visible" />
+                    android:visibility="gone" />
 
                 <ImageView
                     android:id="@+id/img_btn_right"
