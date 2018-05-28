@@ -101,15 +101,17 @@ public class RegisterAndLoginActivity extends BaseActivity {
         });
 
 
-
         btnLogin.setNormalBackgroundColor(colors);
         btnRegisterNext.setNormalBackgroundColor(colors);
         btnRegisterNext2.setNormalBackgroundColor(colors);
     }
 
-    @OnClick({R.id.tv_login, R.id.tv_register, R.id.btn_register_next, R.id.btn_register_next2, R.id.tv_count_down, R.id.tv_forget_pwd})
+    @OnClick({R.id.btn_login, R.id.tv_login, R.id.tv_register, R.id.btn_register_next, R.id.btn_register_next2, R.id.tv_count_down, R.id.tv_forget_pwd})
     public void onViewClicked(View view) {
         switch (view.getId()) {
+            case R.id.btn_login:
+                ActivityUtil.next(THIS, AddressBookActivity.class);
+                break;
             case R.id.tv_login:
                 llLoginView.setVisibility(View.VISIBLE);
                 llRegisterView.setVisibility(View.GONE);

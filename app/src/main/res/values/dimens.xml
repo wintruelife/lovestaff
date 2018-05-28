@@ -85,6 +85,7 @@
     <dimen name="goodsshuxin_width">40dp</dimen>
 
 
+    <dimen name="dimension_64">64dp</dimen>
     <dimen name="dimension_58">58dp</dimen>
     <dimen name="dimension_50">50dp</dimen>
     <dimen name="dimension_44">44dp</dimen>

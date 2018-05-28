@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dimension_64"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <love.wintrue.com.lovestaff.widget.CircleImageView
+        android:id="@+id/iv_address_book"
+        android:layout_width="@dimen/dimension_44"
+        android:layout_height="@dimen/dimension_44"
+        android:layout_marginLeft="@dimen/dimension_15"
+        android:layout_marginRight="@dimen/dimension_10"
+        android:src="@drawable/user_logo" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="48dp"
+            android:layout_height="22dp"
+            android:text="艾裴裴"
+            android:textColor="@color/color_242424"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="48dp"
+            android:layout_height="17dp"
+            android:text="运营经理"
+            android:textColor="@color/color_969696"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+</LinearLayout>
