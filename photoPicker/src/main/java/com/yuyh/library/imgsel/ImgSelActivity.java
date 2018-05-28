@@ -2,10 +2,11 @@ package com.yuyh.library.imgsel;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
@@ -14,7 +15,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -24,7 +24,7 @@ import android.widget.Toast;
 import com.yuyh.library.imgsel.common.Callback;
 import com.yuyh.library.imgsel.common.Constant;
 import com.yuyh.library.imgsel.utils.FileUtils;
-import com.yuyh.library.imgsel.utils.StatusBarCompat;
+import com.yuyh.library.imgsel.widget.statusbarUtil.StatusBarUtil;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -41,6 +41,7 @@ public class ImgSelActivity extends FragmentActivity implements View.OnClickList
     private TextView tvTitle;
     private Button btnConfirm;
     private ImageView ivBack;
+    private View virtualStatusBar;
     private String cropImagePath;
 
     private ArrayList<String> result = new ArrayList<>();
@@ -61,6 +62,7 @@ public class ImgSelActivity extends FragmentActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_img_sel);
+        StatusBarUtil.setTranslucentForImageView(this, 0, null);
         Constant.imageList.clear();
         config = Constant.config;
 
@@ -83,6 +85,8 @@ public class ImgSelActivity extends FragmentActivity implements View.OnClickList
 
     private void initView() {
         rlTitleBar = (RelativeLayout) findViewById(R.id.rlTitleBar);
+        virtualStatusBar = findViewById(R.id.virtual_statusBar);
+        setBackground(ContextCompat.getDrawable(ImgSelActivity.this, R.drawable.title_bg));
         tvTitle = (TextView) findViewById(R.id.tvTitle);
         btnConfirm = (Button) findViewById(R.id.btnConfirm);
         btnConfirm.setOnClickListener(this);
@@ -94,20 +98,54 @@ public class ImgSelActivity extends FragmentActivity implements View.OnClickList
                 ivBack.setImageResource(config.backResId);
             }
 
-            if (config.statusBarColor != -1) {
-                StatusBarCompat.compat(this, config.statusBarColor);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT
-                        && Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-                    //透明状态栏
-                    getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-                }
-            }
-            rlTitleBar.setBackgroundColor(config.titleBgColor);
+//            if (config.statusBarColor != -1) {
+//                StatusBarCompat.compat(this, config.statusBarColor);
+//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT
+//                        && Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+//                    //透明状态栏
+//                    getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+//                }
+//            }
+            //rlTitleBar.setBackgroundColor(config.titleBgColor);
             tvTitle.setTextColor(config.titleColor);
             tvTitle.setText(config.title);
             btnConfirm.setBackgroundColor(config.btnBgColor);
             btnConfirm.setTextColor(config.btnTextColor);
         }
+    }
+
+    /**
+     * 设置背景颜色
+     *
+     * @param colorDrawable
+     */
+    public void setBackground(final Drawable colorDrawable) {
+//        ViewTreeObserver vto = virtualStatusBar.getViewTreeObserver();
+//        vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+//            @Override
+//            public void onGlobalLayout() {
+//                virtualStatusBar.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+//                ViewGroup.LayoutParams lp;
+//                lp = virtualStatusBar.getLayoutParams();
+//                lp.width = ViewGroup.LayoutParams.MATCH_PARENT;
+//                lp.height = getStatusHeight(ImgSelActivity.this);
+//                virtualStatusBar.setLayoutParams(lp);
+        if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+            rlTitleBar.setBackgroundDrawable(colorDrawable);
+        } else {
+            rlTitleBar.setBackground(colorDrawable);
+        }
+//            }
+//        });
+    }
+
+    private int getStatusHeight(Context context) {
+        int result = 0;
+        int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            result = context.getResources().getDimensionPixelSize(resourceId);
+        }
+        return result;
     }
 
     @Override

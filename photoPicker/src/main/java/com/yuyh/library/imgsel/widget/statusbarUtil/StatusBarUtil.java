@@ -1,4 +1,4 @@
-package love.wintrue.com.lovestaff.widget.statusbarUtil;
+package com.yuyh.library.imgsel.widget.statusbarUtil;
 
 import android.annotation.TargetApi;
 import android.app.Activity;

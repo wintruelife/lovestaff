@@ -4,6 +4,7 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvImageList"
+        android:layout_below="@+id/rlTitleBar"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
