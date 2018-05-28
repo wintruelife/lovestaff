@@ -18,6 +18,7 @@ import love.wintrue.com.lovestaff.R;
 import love.wintrue.com.lovestaff.base.BaseActivity;
 import love.wintrue.com.lovestaff.image.ImageSelectActivity;
 import love.wintrue.com.lovestaff.receiver.NetworkStateReceiver;
+import love.wintrue.com.lovestaff.utils.ActivityUtil;
 import love.wintrue.com.lovestaff.utils.FileUtil;
 import love.wintrue.com.lovestaff.utils.LogUtil;
 import love.wintrue.com.lovestaff.utils.Util;
@@ -101,6 +102,7 @@ public class UserInfoActivity extends BaseActivity {
                 choiceAvatarImg();
                 break;
             case R.id.mine_nc:
+                ActivityUtil.next(UserInfoActivity.this,NickSettingActivity.class);
                 break;
             case R.id.mine_gxqm:
                 break;
