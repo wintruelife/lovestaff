@@ -74,10 +74,6 @@ public class RegisterAndLoginActivity extends BaseActivity {
 
     @Override
     public void initView() {
-<<<<<<< HEAD
-        ActivityUtil.next(this, MineActivity.class);
-        cab.setLeftImgBtnWithBg(R.mipmap.nav_bar_back_icon, new View.OnClickListener() {
-=======
         timerTask = new MyTimerTask();
         timerHandler = new Handler() {
             @Override
@@ -98,12 +94,13 @@ public class RegisterAndLoginActivity extends BaseActivity {
 
         cab.setActionBarTitle("爱员工");
         cab.setLeftImgBtn(new View.OnClickListener() {
->>>>>>> 9b11354583b88fa0a3e79d9264941f036fab156c
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
+
+
 
         btnLogin.setNormalBackgroundColor(colors);
         btnRegisterNext.setNormalBackgroundColor(colors);
