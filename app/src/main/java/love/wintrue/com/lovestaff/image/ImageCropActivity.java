@@ -244,7 +244,7 @@ public class ImageCropActivity extends MonitoredActivity {
         if (currentApiVersion < 24) {
             return Uri.fromFile(new File(path));
         } else {
-            return FileProvider.getUriForFile(this, "com.ytsh.finance.fileprovider", new File(path));
+            return FileProvider.getUriForFile(this, getPackageName()+".android7.fileprovider", new File(path));
         }
     }
 

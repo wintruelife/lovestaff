@@ -5,8 +5,8 @@
     </style>
 
     <style name="ActionbarBtnStyleBase">
-        <item name="android:layout_width">@dimen/actionbar_btn_size</item>
-        <item name="android:layout_height">@dimen/actionbar_btn_size</item>
+        <item name="android:layout_width">@dimen/dimension_35</item>
+        <item name="android:layout_height">@dimen/dimension_35</item>
         <item name="android:gravity">center</item>
         <item name="android:maxWidth">100dp</item>
         <item name="android:paddingLeft">0dp</item>

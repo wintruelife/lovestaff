@@ -85,6 +85,7 @@
     <dimen name="goodsshuxin_width">40dp</dimen>
 
 
+    <dimen name="dimension_58">58dp</dimen>
     <dimen name="dimension_50">50dp</dimen>
     <dimen name="dimension_44">44dp</dimen>
     <dimen name="dimension_43">43dp</dimen>
@@ -94,6 +95,7 @@
     <dimen name="dimension_10">10dp</dimen>
 
     <dimen name="dimension_22">22dp</dimen>
+    <dimen name="dimension_20">20dp</dimen>
     <dimen name="dimension_104">104dp</dimen>
     <dimen name="dimension_8">8dp</dimen>
     <dimen name="dimension_35">35dp</dimen>
@@ -101,4 +103,8 @@
     <dimen name="dimension_16">16dp</dimen>
     <dimen name="dimension_14">14dp</dimen>
     <dimen name="dimension_18">18dp</dimen>
+    <dimen name="dimension_17">17dp</dimen>
+    <dimen name="dimension_13">13dp</dimen>
+    <dimen name="dimension_19">19dp</dimen>
+    <dimen name="dimension_34">34dp</dimen>
 </resources>

@@ -709,6 +709,7 @@ public class FileUtil {
                         }
                     }catch (Exception e) {
                         e.printStackTrace();
+                        msg.obj=e.getMessage();
                     }
                 }else{
                     try {
@@ -716,6 +717,7 @@ public class FileUtil {
                         msg.what = 0;
                     }catch (Exception e){
                         e.printStackTrace();
+                        msg.obj=e.getMessage();
                     }
                 }
                 msg.sendToTarget();

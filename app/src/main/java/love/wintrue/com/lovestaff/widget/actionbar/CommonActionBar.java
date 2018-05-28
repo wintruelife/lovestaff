@@ -2,11 +2,13 @@ package love.wintrue.com.lovestaff.widget.actionbar;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -88,6 +90,7 @@ public class CommonActionBar extends RelativeLayout {
             mTxtBtnRight = (Button) mView.findViewById(R.id.btn_right);
             mImgBtnRight = (ImageView) mView.findViewById(R.id.img_btn_right);
             mRlContainer = (RelativeLayout) mView.findViewById(R.id.rl_container);
+            setBackground(ContextCompat.getDrawable(context, R.drawable.title_bg));
             mDataLoadingLayout = (DataLoadingLayout) mView.findViewById(R.id.data_loading);
         }
     }
@@ -110,17 +113,26 @@ public class CommonActionBar extends RelativeLayout {
      *
      * @param colorDrawable
      */
-    public void setBackground(Drawable colorDrawable) {
-        ViewGroup.LayoutParams lp;
-        lp = virtualStatusBar.getLayoutParams();
-        lp.width = ViewGroup.LayoutParams.MATCH_PARENT;
-        lp.height = DensityUtil.getStatusHeight(mContext);
-        virtualStatusBar.setLayoutParams(lp);
-        if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.JELLY_BEAN) {
-            mRlContainer.setBackgroundDrawable(colorDrawable);
-        } else {
-            mRlContainer.setBackground(colorDrawable);
-        }
+    public void setBackground(final Drawable colorDrawable) {
+        ViewTreeObserver vto = virtualStatusBar.getViewTreeObserver();
+        vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                virtualStatusBar.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                ViewGroup.LayoutParams lp;
+                lp = virtualStatusBar.getLayoutParams();
+                lp.width = ViewGroup.LayoutParams.MATCH_PARENT;
+                lp.height = DensityUtil.getStatusHeight(mContext);
+                virtualStatusBar.setLayoutParams(lp);
+                if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+                    mRlContainer.setBackgroundDrawable(colorDrawable);
+                } else {
+                    mRlContainer.setBackground(colorDrawable);
+                }
+            }
+        });
+
+
     }
 
 

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_f6f6f6"
+    android:orientation="vertical">
+
+    <love.wintrue.com.lovestaff.widget.actionbar.CommonActionBar
+        android:id="@+id/title_actionbar_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <RelativeLayout
+        android:id="@+id/rl_username"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimension_58"
+        android:layout_marginTop="@dimen/dimension_10"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_pwd_title"
+            android:layout_width="64dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dimension_15"
+            android:text="设置密码"
+            android:textColor="@color/color_242424"
+            android:textSize="@dimen/dimension_16" />
+
+        <love.wintrue.com.lovestaff.widget.ClearEditText
+            android:id="@+id/et_pwd"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/dimension_20"
+            android:layout_toLeftOf="@+id/iv_pwd_visible"
+            android:layout_toRightOf="@+id/tv_pwd_title"
+            android:background="@null"
+            android:drawablePadding="10dp"
+            android:gravity="left|center_vertical"
+            android:hint="请设置一个登录密码"
+            android:inputType="textPassword"
+            android:textColor="@color/color_242424"
+            android:textColorHint="@color/color_969696"
+            android:textSize="@dimen/dimension_14" />
+
+        <ImageView
+            android:id="@+id/iv_pwd_visible"
+            android:layout_width="@dimen/dimension_20"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dimension_15"
+            android:src="@mipmap/icon_yj_gb" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_user_avatar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimension_58"
+        android:layout_marginTop="@dimen/dimension_10"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_avatar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dimension_15"
+            android:text="头像"
+            android:textColor="@color/color_242424"
+            android:textSize="@dimen/dimension_16" />
+
+        <ImageView
+            android:id="@+id/iv_avatar"
+            android:layout_width="@dimen/dimension_34"
+            android:layout_height="@dimen/dimension_34"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dimension_10"
+            android:layout_toLeftOf="@+id/iv_next"
+            android:src="@mipmap/img_user_default" />
+
+        <ImageView
+            android:id="@+id/iv_next"
+            android:layout_width="@dimen/dimension_14"
+            android:layout_height="@dimen/dimension_14"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dimension_19"
+            android:src="@mipmap/icon_right" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_nickname"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimension_58"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginLeft="@dimen/dimension_15"
+            android:layout_marginRight="@dimen/dimension_15"
+            android:background="@color/line_color_1" />
+
+        <TextView
+            android:id="@+id/tv_nickname_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dimension_15"
+            android:text="昵称"
+            android:textColor="@color/color_242424"
+            android:textSize="@dimen/dimension_16" />
+
+        <love.wintrue.com.lovestaff.widget.ClearEditText
+            android:id="@+id/et_nickname"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="52dp"
+            android:layout_toRightOf="@+id/tv_nickname_title"
+            android:background="@null"
+            android:drawablePadding="10dp"
+            android:gravity="left|center_vertical"
+            android:hint="请输入昵称"
+            android:inputType="text"
+            android:textColor="@color/color_242424"
+            android:textColorHint="@color/color_969696"
+            android:textSize="@dimen/dimension_14" />
+    </RelativeLayout>
+
+    <love.wintrue.com.lovestaff.widget.StateButton
+        android:id="@+id/btn_join"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimension_44"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/btn_register"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="@dimen/dimension_15"
+        android:layout_marginRight="@dimen/dimension_15"
+        android:layout_marginTop="@dimen/dimension_58"
+        android:background="@null"
+        android:minHeight="0dp"
+        android:minWidth="0dp"
+        android:text="加入爱员工"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/dimension_16"
+        app:normalBackgroundColor="@color/color_31b3ef"
+        app:pressedBackgroundColor="@color/color_969696"
+        app:sb_radius="5dp" />
+</LinearLayout>

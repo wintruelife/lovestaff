@@ -26,7 +26,7 @@ import love.wintrue.com.lovestaff.exception.CrashException;
 import love.wintrue.com.lovestaff.http.ApiService;
 import love.wintrue.com.lovestaff.receiver.NetChangeObserver;
 import love.wintrue.com.lovestaff.receiver.NetworkStateReceiver;
-import love.wintrue.com.lovestaff.ui.activity.MainActivity;
+import love.wintrue.com.lovestaff.ui.activity.RegisterAndLoginActivity;
 import love.wintrue.com.lovestaff.utils.FrescoImageLoader;
 import love.wintrue.com.lovestaff.utils.ImageDownLoader;
 import love.wintrue.com.lovestaff.utils.ImageUtil;
@@ -370,7 +370,7 @@ public class MApplication extends Application {
                     setActivityResult(false);
                 } else {
                     LogUtil.e("isFirstMain:" + isFirstMain);
-                    if (isFirstMain && activity instanceof MainActivity) {
+                    if (isFirstMain && activity instanceof RegisterAndLoginActivity) {
                         isFirstMain = false;
                         toLock(activity);
                     }
