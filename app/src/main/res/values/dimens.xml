@@ -84,10 +84,11 @@
     <dimen name="home_page_item_height">44dp</dimen>
     <dimen name="goodsshuxin_width">40dp</dimen>
 
-
+    <dimen name="list_item__contact_imageview_size">55dp</dimen>
     <dimen name="dimension_64">64dp</dimen>
     <dimen name="dimension_58">58dp</dimen>
     <dimen name="dimension_50">50dp</dimen>
+    <dimen name="dimension_48">48dp</dimen>
     <dimen name="dimension_44">44dp</dimen>
     <dimen name="dimension_43">43dp</dimen>
     <dimen name="dimension_28">28dp</dimen>
@@ -106,6 +107,7 @@
     <dimen name="dimension_18">18dp</dimen>
     <dimen name="dimension_17">17dp</dimen>
     <dimen name="dimension_13">13dp</dimen>
+    <dimen name="dimension_12">12dp</dimen>
     <dimen name="dimension_19">19dp</dimen>
     <dimen name="dimension_34">34dp</dimen>
 </resources>

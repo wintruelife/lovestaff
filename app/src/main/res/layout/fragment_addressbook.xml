@@ -1,89 +1,179 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/radius_common_bg"
     android:orientation="vertical">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/ll_bottom_view"
+        android:layout_marginLeft="@dimen/dimension_15"
+        android:layout_marginRight="@dimen/dimension_15"
+        android:background="@drawable/radius_common_bg"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/ll_search"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/rl_search"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp">
+
+                <ImageView
+                    android:id="@+id/tv_search"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="5dp"
+                    android:padding="5dp"
+                    android:src="@mipmap/ic_search" />
+
+                <EditText
+                    android:id="@+id/et_search_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="2dp"
+                    android:layout_toLeftOf="@+id/iv_reinput"
+                    android:layout_toRightOf="@+id/tv_search"
+                    android:background="@null"
+                    android:gravity="left|center_vertical"
+                    android:hint="搜索"
+                    android:imeOptions="actionSearch"
+                    android:padding="2dp"
+                    android:paddingRight="25dp"
+                    android:singleLine="true"
+                    android:textColor="@color/color_505050"
+                    android:textColorHint="@color/color_BEBEBE"
+                    android:textSize="15dp" />
+
+                <ImageView
+                    android:id="@+id/iv_reinput"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/clear_tv_delete_selector"
+                    android:visibility="gone" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/ll_search">
+
+            <me.yokeyword.indexablerv.IndexableLayout
+                android:id="@+id/indexableLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/white"
+                app:indexBar_selectedTextColor="@color/color_FF2F50"
+                app:rv_indexBar_background="@android:color/transparent"
+                app:rv_indexBar_layout_width="30dp"
+                app:rv_indexBar_textColor="@color/color_31b3ef"
+                app:rv_indexBar_textSpace="8dp" />
+
+            <TextView
+                android:id="@+id/tv_no_result"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:background="@color/white"
+                android:gravity="center_horizontal"
+                android:text="没有搜索到匹配的内容"
+                android:textSize="@dimen/dimension_14"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tv_no_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:background="@color/white"
+                android:gravity="center"
+                android:text="个人通讯录为空"
+                android:textSize="@dimen/dimension_14"
+                android:visibility="invisible" />
+        </FrameLayout>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_bottom_separation"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/dimension_48"
+        android:background="@color/color_BEBEBE" />
 
     <LinearLayout
+        android:id="@+id/ll_bottom_view"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/dimension_48"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
-        <RelativeLayout
-            android:id="@+id/rl_search"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp">
-
-            <ImageView
-                android:id="@+id/tv_search"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="5dp"
-                android:padding="5dp"
-                android:src="@mipmap/ic_search" />
-
-            <EditText
-                android:id="@+id/et_search_title"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="2dp"
-                android:layout_toLeftOf="@+id/iv_reinput"
-                android:layout_toRightOf="@+id/tv_search"
-                android:background="@null"
-                android:gravity="left|center_vertical"
-                android:hint="搜索"
-                android:imeOptions="actionSearch"
-                android:padding="2dp"
-                android:paddingRight="25dp"
-                android:singleLine="true"
-                android:textColor="@color/color_505050"
-                android:textColorHint="@color/color_BEBEBE"
-                android:textSize="15dp" />
-
-            <ImageView
-                android:id="@+id/iv_reinput"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:src="@drawable/clear_tv_delete_selector"
-                android:visibility="gone" />
-        </RelativeLayout>
-    </LinearLayout>
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <me.yokeyword.indexablerv.IndexableLayout
-            android:id="@+id/indexableLayout"
+        <LinearLayout
+            android:id="@+id/ll_add_contact"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@android:color/white"
-            app:rv_indexBar_background="@android:color/transparent"
-            app:rv_indexBar_layout_width="30dp"
-            app:indexBar_selectedTextColor="@color/color_FF2F50"
-            app:rv_indexBar_textColor="@color/color_31b3ef"
-            app:rv_indexBar_textSpace="8dp" />
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/dimension_18"
+                android:layout_height="@dimen/dimension_18"
+                android:layout_marginRight="@dimen/dimension_8"
+                android:src="@mipmap/icon_add" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="添加名片"
+                android:textColor="@color/color_242424"
+                android:textSize="@dimen/dimension_14" />
+        </LinearLayout>
 
         <TextView
-            android:id="@+id/tv_no_result"
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/color_BEBEBE" />
+
+        <LinearLayout
+            android:id="@+id/ll_import_contact"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
-            android:background="@color/white"
-            android:gravity="center_horizontal"
-            android:text="没有搜索到匹配的内容"
-            android:textSize="@dimen/dimension_14"
-            android:visibility="gone" />
-    </FrameLayout>
-</LinearLayout>
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/dimension_18"
+                android:layout_height="@dimen/dimension_18"
+                android:layout_marginRight="@dimen/dimension_8"
+                android:src="@mipmap/import_address_book" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="导入手机通讯录"
+                android:textColor="@color/color_242424"
+                android:textSize="@dimen/dimension_14" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

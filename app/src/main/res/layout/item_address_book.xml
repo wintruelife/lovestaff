@@ -1,17 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="@dimen/dimension_64"
     android:gravity="center_vertical"
     android:orientation="horizontal">
 
-    <love.wintrue.com.lovestaff.widget.CircleImageView
-        android:id="@+id/iv_address_book"
-        android:layout_width="@dimen/dimension_44"
-        android:layout_height="@dimen/dimension_44"
-        android:layout_marginLeft="@dimen/dimension_15"
-        android:layout_marginRight="@dimen/dimension_10"
-        android:src="@drawable/user_logo" />
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_address_book"
+            android:layout_width="@dimen/dimension_44"
+            android:layout_height="@dimen/dimension_44"
+            android:layout_marginLeft="@dimen/dimension_15"
+            android:layout_marginRight="@dimen/dimension_10"
+            android:src="@drawable/user_logo" />
+
+        <love.wintrue.com.lovestaff.widget.circularcontactview.CircularContactView
+            android:id="@+id/ccv_name_view"
+            android:layout_width="@dimen/dimension_44"
+            android:layout_height="@dimen/dimension_44"
+            android:layout_marginLeft="@dimen/dimension_15"
+            android:visibility="gone"
+            android:scaleType="centerCrop"/>
+    </FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -1,5 +1,7 @@
 package love.wintrue.com.lovestaff.bean;
 
+import android.net.Uri;
+
 import java.io.Serializable;
 
 import me.yokeyword.indexablerv.IndexableEntity;
@@ -9,11 +11,20 @@ import me.yokeyword.indexablerv.IndexableEntity;
  */
 
 public class AddressBookItemBean implements Serializable,IndexableEntity {
+    public Uri contactUri;
     private String id;
     private String avatarUrl;
     private String name;
     private String pinyin;
     private String job;
+
+    public Uri getContactUri() {
+        return contactUri;
+    }
+
+    public void setContactUri(Uri contactUri) {
+        this.contactUri = contactUri;
+    }
 
     public String getId() {
         return id;

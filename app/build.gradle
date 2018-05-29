@@ -111,6 +111,7 @@ dependencies {
     compile 'com.facebook.fresco:imagepipeline-okhttp3:0.12.0+'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.github.bumptech.glide:glide:3.6.0'
+    compile 'jp.wasabeef:glide-transformations:2.0.0'
     compile 'com.android.support:support-v4:25.1.0'
     compile 'com.facebook.fresco:fresco:1.3.0'
     compile project(path: ':base_library_pullToRefresh')
@@ -121,4 +122,5 @@ dependencies {
     compile 'com.youth.banner:banner:1.4.9'
     compile 'com.android.support:multidex:1.0.1'
     compile 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
+    compile 'com.github.pavlospt:roundedletterview:1.2'
 }

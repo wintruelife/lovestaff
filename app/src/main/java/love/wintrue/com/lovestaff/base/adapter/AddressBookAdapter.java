@@ -1,31 +1,49 @@
 package love.wintrue.com.lovestaff.base.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.media.ThumbnailUtils;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
+import jp.wasabeef.glide.transformations.CropCircleTransformation;
 import love.wintrue.com.lovestaff.R;
 import love.wintrue.com.lovestaff.bean.AddressBookItemBean;
-import love.wintrue.com.lovestaff.widget.CircleImageView;
+import love.wintrue.com.lovestaff.widget.circularcontactview.AsyncTaskEx;
+import love.wintrue.com.lovestaff.widget.circularcontactview.AsyncTaskThreadPool;
+import love.wintrue.com.lovestaff.widget.circularcontactview.CircularContactView;
+import love.wintrue.com.lovestaff.widget.circularcontactview.ContactImageUtil;
+import love.wintrue.com.lovestaff.widget.circularcontactview.ImageCache;
 
 public class AddressBookAdapter extends me.yokeyword.indexablerv.IndexableAdapter<AddressBookItemBean> implements Filterable {
     private LayoutInflater mInflater;
     private SearchCallBack mSearchCallBack;
     private Context mContext;
+    private int mAddressBookType;
+    private final int[] PHOTO_TEXT_BACKGROUND_COLORS;
+    private final int CONTACT_PHOTO_IMAGE_SIZE;
+    private final AsyncTaskThreadPool mAsyncTaskThreadPool = new AsyncTaskThreadPool(1, 2, 10);
 
-    public AddressBookAdapter(Context context, SearchCallBack searchCallBack) {
+    public AddressBookAdapter(Context context, SearchCallBack searchCallBack, int addressBookType) {
         mInflater = LayoutInflater.from(context);
         mContext = context;
+        PHOTO_TEXT_BACKGROUND_COLORS = mContext.getResources().getIntArray(R.array.contacts_text_background_colors);
+        CONTACT_PHOTO_IMAGE_SIZE = mContext.getResources().getDimensionPixelSize(
+                R.dimen.dimension_44);
+        mAddressBookType = addressBookType;
         mSearchCallBack = searchCallBack;
     }
 
@@ -48,14 +66,60 @@ public class AddressBookAdapter extends me.yokeyword.indexablerv.IndexableAdapte
     }
 
     @Override
-    public void onBindContentViewHolder(RecyclerView.ViewHolder holder, AddressBookItemBean entity) {
-        ContentVH vh = (ContentVH) holder;
+    public void onBindContentViewHolder(final RecyclerView.ViewHolder holder, final AddressBookItemBean entity) {
+        final ContentVH vh = (ContentVH) holder;
         vh.tv.setText(entity.getName());
-        Glide.with(mContext).load(entity.getAvatarUrl())
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .placeholder(R.drawable.bg_jz)
-                .error(R.drawable.bg_jz)
-                .crossFade().into(vh.ivAddressBook);
+        if (mAddressBookType == 0) {
+            Glide.with(mContext).load(entity.getAvatarUrl())
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .placeholder(R.drawable.bg_jz)
+                    .error(R.drawable.bg_jz)
+                    .crossFade().bitmapTransform(new CropCircleTransformation(mContext)).
+                    into(vh.ivAddressBook);
+        } else {
+            boolean hasPhoto = !TextUtils.isEmpty(entity.getAvatarUrl());
+            if (vh.updateTask != null && !vh.updateTask.isCancelled())
+                vh.updateTask.cancel(true);
+            final Bitmap cachedBitmap = hasPhoto ? ImageCache.INSTANCE.getBitmapFromMemCache(entity.getAvatarUrl()) : null;
+            if (cachedBitmap != null)
+                vh.rlvNameView.setImageBitmap(cachedBitmap);
+            else {
+                final int backgroundColorToUse = PHOTO_TEXT_BACKGROUND_COLORS[holder.getAdapterPosition()
+                        % PHOTO_TEXT_BACKGROUND_COLORS.length];
+                if (TextUtils.isEmpty(entity.getName()))
+                    vh.rlvNameView.setImageResource(R.drawable.user_logo,
+                            backgroundColorToUse);
+                else {
+                    final String characterToShow = TextUtils.isEmpty(entity.getName()) ? "" : entity.getName().substring(0, 1).toUpperCase(Locale.getDefault());
+                    vh.rlvNameView.setTextAndBackgroundColor(characterToShow, backgroundColorToUse);
+                }
+                if (hasPhoto) {
+                    vh.updateTask = new AsyncTaskEx<Void, Void, Bitmap>() {
+
+                        @Override
+                        public Bitmap doInBackground(final Void... params) {
+                            if (isCancelled())
+                                return null;
+                            final Bitmap b = ContactImageUtil.loadContactPhotoThumbnail(mContext, entity.getAvatarUrl(), CONTACT_PHOTO_IMAGE_SIZE);
+                            if (b != null)
+                                return ThumbnailUtils.extractThumbnail(b, CONTACT_PHOTO_IMAGE_SIZE,
+                                        CONTACT_PHOTO_IMAGE_SIZE);
+                            return null;
+                        }
+
+                        @Override
+                        public void onPostExecute(final Bitmap result) {
+                            super.onPostExecute(result);
+                            if (result == null)
+                                return;
+                            ImageCache.INSTANCE.addBitmapToCache(entity.getAvatarUrl(), result);
+                            vh.rlvNameView.setImageBitmap(result);
+                        }
+                    };
+                    mAsyncTaskThreadPool.executeAsyncTask(vh.updateTask);
+                }
+            }
+        }
     }
 
     @Override
@@ -99,13 +163,23 @@ public class AddressBookAdapter extends me.yokeyword.indexablerv.IndexableAdapte
 
     private class ContentVH extends RecyclerView.ViewHolder {
         TextView tv;
-        CircleImageView ivAddressBook;
+        ImageView ivAddressBook;
+        CircularContactView rlvNameView;
+        public AsyncTaskEx<Void, Void, Bitmap> updateTask;
 
 
         public ContentVH(View itemView) {
             super(itemView);
             tv = (TextView) itemView.findViewById(R.id.tv_name);
-            ivAddressBook = (CircleImageView) itemView.findViewById(R.id.iv_address_book);
+            ivAddressBook = (ImageView) itemView.findViewById(R.id.iv_address_book);
+            rlvNameView = (CircularContactView) itemView.findViewById(R.id.ccv_name_view);
+            if (mAddressBookType == 0) {
+                ivAddressBook.setVisibility(View.VISIBLE);
+                rlvNameView.setVisibility(View.GONE);
+            } else {
+                ivAddressBook.setVisibility(View.INVISIBLE);
+                rlvNameView.setVisibility(View.VISIBLE);
+            }
         }
     }
 

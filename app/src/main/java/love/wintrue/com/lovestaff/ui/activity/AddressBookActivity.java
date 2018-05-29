@@ -49,8 +49,9 @@ public class AddressBookActivity extends BaseActivity {
             }
         });
         fragmentList = new ArrayList<>();
-        fragmentList.add(AddressBookFragment.instance());
-        fragmentList.add(AddressBookFragment.instance());
+        fragmentList.add(AddressBookFragment.instance(0));
+        fragmentList.add(AddressBookFragment.instance(1));
+        vpAddressBookType.setNoScroll(true);
         myPagerAdapter = new MyPagerAdapter(getSupportFragmentManager());
         vpAddressBookType.setAdapter(myPagerAdapter);
         stlAddressBookTitle.setViewPager(vpAddressBookType, mTitles);

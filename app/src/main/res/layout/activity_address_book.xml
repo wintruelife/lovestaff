@@ -28,7 +28,5 @@
         android:id="@+id/vp_addressBook_type"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="@dimen/dimension_15"
-        android:layout_marginRight="@dimen/dimension_15"
         android:layout_above="@+id/fl_tab" />
 </LinearLayout>
