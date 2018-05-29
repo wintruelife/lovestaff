@@ -72,7 +72,7 @@ public class MineActivity extends BaseActivity {
         commonActionBar.setRightImgBtn(R.drawable.icon_sz,new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                ActivityUtil.next(MineActivity.this,SettingActivity.class);
             }
         });
     }

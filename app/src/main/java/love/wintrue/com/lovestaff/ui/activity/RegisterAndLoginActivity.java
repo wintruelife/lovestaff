@@ -14,6 +14,7 @@ import butterknife.Bind;
 import butterknife.OnClick;
 import love.wintrue.com.lovestaff.R;
 import love.wintrue.com.lovestaff.base.BaseActivity;
+import love.wintrue.com.lovestaff.ui.mine.MineActivity;
 import love.wintrue.com.lovestaff.utils.ActivityUtil;
 import love.wintrue.com.lovestaff.utils.AnimationUtils;
 import love.wintrue.com.lovestaff.utils.Util;
@@ -74,6 +75,7 @@ public class RegisterAndLoginActivity extends BaseActivity {
 
     @Override
     public void initView() {
+        ActivityUtil.next(RegisterAndLoginActivity.this, MineActivity.class);
         timerTask = new MyTimerTask();
         timerHandler = new Handler() {
             @Override

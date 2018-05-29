@@ -105,6 +105,7 @@ public class UserInfoActivity extends BaseActivity {
                 ActivityUtil.next(UserInfoActivity.this,NickSettingActivity.class);
                 break;
             case R.id.mine_gxqm:
+                ActivityUtil.next(UserInfoActivity.this,DescribeSettingActivity.class);
                 break;
         }
     }
