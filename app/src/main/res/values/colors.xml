@@ -151,5 +151,7 @@
     <color name="color_242424">#242424</color>
     <color name="color_f6f6f6">#f6f6f6</color>
     <color name="color_FF6153">#FF6153</color>
-
+    <color name="color_BEBEBE">#BEBEBE</color>
+    <color name="color_FF2F50">#FF2F50</color>
+    <color name="color_F5F5F5">#F5F5F5</color>
 </resources>

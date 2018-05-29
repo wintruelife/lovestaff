@@ -11,26 +11,31 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
-
 
 import java.util.HashMap;
 import java.util.Map;
 
+import butterknife.ButterKnife;
 import love.wintrue.com.lovestaff.widget.dialog.LoadingDialog;
 
 /**
  * @ClassName: BaseFragment
  * @Description:
  */
-public class BaseFragment extends Fragment {
+public abstract class BaseFragment extends Fragment {
 
 	/** Toast */
 	private Toast mToast;
 	/** ProgressDialog */
 	private LoadingDialog mLoadingDialog;
 	private boolean needNotifyOnAttach = false;
+	protected Context mContext;
+	protected LayoutInflater mInflater;
+	protected View rootView;
 
 	@Override
 	public void onAttach(Context context) {
@@ -40,6 +45,23 @@ public class BaseFragment extends Fragment {
 			needNotifyOnAttach = false;
 		}
 	}
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		if (rootView == null)
+			rootView = inflater.inflate(getLayoutResource(), container, false);
+		ButterKnife.bind(this, rootView);
+		mContext = getActivity();
+		mInflater = inflater;
+		initView();
+		return rootView;
+	}
+
+	//获取布局文件
+	protected abstract int getLayoutResource();
+
+	//初始化view
+	protected abstract void initView();
 
 	@Override
 	public void onActivityCreated(@Nullable Bundle savedInstanceState) {

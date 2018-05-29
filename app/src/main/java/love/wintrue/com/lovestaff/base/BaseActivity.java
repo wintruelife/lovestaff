@@ -9,6 +9,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.view.KeyEvent;
@@ -32,7 +33,7 @@ import love.wintrue.com.lovestaff.widget.statusbarUtil.StatusBarUtil;
  * @ClassName: BaseBankActivity
  * @Description: 基础activity
  */
-public abstract class BaseActivity extends Activity {
+public abstract class BaseActivity extends FragmentActivity {
 
     public Activity THIS;
     /**
