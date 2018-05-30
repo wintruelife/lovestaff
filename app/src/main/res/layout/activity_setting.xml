@@ -55,7 +55,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:layout_marginLeft="50dp"
+        android:layout_marginLeft="20dp"
         android:background="@color/line_color_1"/>
 
     <LinearLayout
@@ -159,7 +159,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:layout_marginLeft="50dp"
+        android:layout_marginLeft="20dp"
         android:background="@color/line_color_1"/>
 
     <LinearLayout
@@ -195,7 +195,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:layout_marginLeft="50dp"
+        android:layout_marginLeft="20dp"
         android:background="@color/line_color_1"/>
 
     <LinearLayout
@@ -238,7 +238,7 @@
             android:background="@drawable/icon_arrow_right_white"/>
     </LinearLayout>
 
-    <Button
+    <TextView
         android:id="@+id/setting_loginout"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -248,7 +248,6 @@
         android:text="退出登录"
         android:textColor="@color/color_FF6153"
         android:gravity="center"/>
-
 
 
 </LinearLayout>
