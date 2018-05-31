@@ -106,6 +106,12 @@
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait" />
         <activity
+            android:name="love.wintrue.com.lovestaff.ui.setting.MyCollectListActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait" />
+
+
+        <activity
             android:name="love.wintrue.com.lovestaff.image.ImageCropActivity"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait" />
