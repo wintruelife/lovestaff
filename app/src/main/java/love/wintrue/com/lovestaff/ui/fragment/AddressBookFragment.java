@@ -1,8 +1,8 @@
 package love.wintrue.com.lovestaff.ui.fragment;
 
 import android.Manifest;
+import android.content.ContentResolver;
 import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.Editable;
@@ -31,7 +31,9 @@ import love.wintrue.com.lovestaff.base.BaseFragment;
 import love.wintrue.com.lovestaff.base.MApplication;
 import love.wintrue.com.lovestaff.base.adapter.AddressBookAdapter;
 import love.wintrue.com.lovestaff.bean.AddressBookItemBean;
+import love.wintrue.com.lovestaff.ui.activity.ContactDetailActivity;
 import love.wintrue.com.lovestaff.utils.ACache;
+import love.wintrue.com.lovestaff.utils.ActivityUtil;
 import love.wintrue.com.lovestaff.widget.circularcontactview.ContactsQuery;
 import me.yokeyword.indexablerv.IndexableAdapter;
 import me.yokeyword.indexablerv.IndexableLayout;
@@ -99,8 +101,10 @@ public class AddressBookFragment extends BaseFragment {
 
         addressBookAdapter.setOnItemContentClickListener(new IndexableAdapter.OnItemContentClickListener<AddressBookItemBean>() {
             @Override
-            public void onItemClick(View v, int originalPosition, int currentPosition, AddressBookItemBean entity) {
-
+            public void onItemClick(View v, int originalPosition, int currentPosition,AddressBookItemBean entity) {
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("contactDetail", entity);
+                ActivityUtil.next(getActivity(), ContactDetailActivity.class, bundle, false);
             }
         });
         indexableLayout.setAdapter(addressBookAdapter);
@@ -287,19 +291,34 @@ public class AddressBookFragment extends BaseFragment {
     }
 
     private void getContacts() {
-        Uri uri = ContactsQuery.CONTENT_URI;
-        final Cursor cursor = getContext().getContentResolver().query(uri, ContactsQuery.PROJECTION, ContactsQuery.SELECTION, null, ContactsQuery.SORT_ORDER);
-        if (cursor == null)
+        ContentResolver contentResolver = getContext().getContentResolver();
+        Cursor cursor;
+        try {
+            cursor = contentResolver.query(
+                    ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+                    new String[]{ContactsContract.CommonDataKinds.Phone.CONTACT_ID,
+                            ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME,
+                            ContactsContract.CommonDataKinds.Phone.NUMBER,
+                            ContactsContract.CommonDataKinds.Phone.PHOTO_THUMBNAIL_URI
+                    },
+                    null, null, ContactsQuery.SORT_ORDER);
+        } catch (Exception e) {
+            cursor = null;
+        }
+
+        if (null == cursor)
             return;
 
-        while (cursor.moveToNext()) {
-            AddressBookItemBean contact = new AddressBookItemBean();
-            contact.setContactUri(ContactsContract.Contacts.getLookupUri(
-                    cursor.getLong(ContactsQuery.ID),
-                    cursor.getString(ContactsQuery.LOOKUP_KEY)));
-            contact.setName(cursor.getString(ContactsQuery.DISPLAY_NAME));
-            contact.setAvatarUrl(cursor.getString(ContactsQuery.PHOTO_THUMBNAIL_DATA));
-            webSiteDataList.add(contact);
+        if (cursor.getCount() > 0) {
+            while (cursor.moveToNext()) {
+                AddressBookItemBean info = new AddressBookItemBean();
+                info.setContactId(String.valueOf(cursor.getInt(0)));
+                info.setName(cursor.getString(1));
+                info.setPhone(cursor.getString(2));
+                info.setAvatarUrl(cursor.getString(3));
+                webSiteDataList.add(info);
+            }
         }
+        cursor.close();
     }
 }

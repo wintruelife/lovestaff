@@ -1,7 +1,5 @@
 package love.wintrue.com.lovestaff.bean;
 
-import android.net.Uri;
-
 import java.io.Serializable;
 
 import me.yokeyword.indexablerv.IndexableEntity;
@@ -11,19 +9,22 @@ import me.yokeyword.indexablerv.IndexableEntity;
  */
 
 public class AddressBookItemBean implements Serializable,IndexableEntity {
-    public Uri contactUri;
+    private String contactId;
     private String id;
     private String avatarUrl;
     private String name;
+    private String phone;
+    private String email;
     private String pinyin;
     private String job;
+    private int backgroundColor;
 
-    public Uri getContactUri() {
-        return contactUri;
+    public String getContactId() {
+        return contactId;
     }
 
-    public void setContactUri(Uri contactUri) {
-        this.contactUri = contactUri;
+    public void setContactId(String contactId) {
+        this.contactId = contactId;
     }
 
     public String getId() {
@@ -50,6 +51,22 @@ public class AddressBookItemBean implements Serializable,IndexableEntity {
         this.name = name;
     }
 
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getJob() {
         return job;
     }
@@ -64,6 +81,14 @@ public class AddressBookItemBean implements Serializable,IndexableEntity {
 
     public void setPinyin(String pinyin) {
         this.pinyin = pinyin;
+    }
+
+    public int getBackgroundColor() {
+        return backgroundColor;
+    }
+
+    public void setBackgroundColor(int backgroundColor) {
+        this.backgroundColor = backgroundColor;
     }
 
     @Override

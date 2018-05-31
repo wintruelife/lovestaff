@@ -18,13 +18,22 @@
             android:layout_marginRight="@dimen/dimension_10"
             android:src="@drawable/user_logo" />
 
+        <!--<love.wintrue.com.lovestaff.widget.circularcontactview.CircularContactView-->
+            <!--android:id="@+id/ccv_name_view"-->
+            <!--android:layout_width="@dimen/dimension_44"-->
+            <!--android:layout_height="@dimen/dimension_44"-->
+            <!--android:layout_marginLeft="@dimen/dimension_15"-->
+            <!--android:visibility="gone"-->
+            <!--android:scaleType="centerCrop"/>-->
+
         <love.wintrue.com.lovestaff.widget.circularcontactview.CircularContactView
             android:id="@+id/ccv_name_view"
             android:layout_width="@dimen/dimension_44"
             android:layout_height="@dimen/dimension_44"
-            android:layout_marginLeft="@dimen/dimension_15"
-            android:visibility="gone"
-            android:scaleType="centerCrop"/>
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/user_logo"
+            app:border_color="@color/white"
+            app:border_width="2dp" />
     </FrameLayout>
 
     <LinearLayout
@@ -34,14 +43,14 @@
 
         <TextView
             android:id="@+id/tv_name"
-            android:layout_width="48dp"
+            android:layout_width="wrap_content"
             android:layout_height="22dp"
             android:text="艾裴裴"
             android:textColor="@color/color_242424"
             android:textSize="16sp" />
 
         <TextView
-            android:layout_width="48dp"
+            android:layout_width="wrap_content"
             android:layout_height="17dp"
             android:text="运营经理"
             android:textColor="@color/color_969696"
