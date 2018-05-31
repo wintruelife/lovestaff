@@ -14,6 +14,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import love.wintrue.com.lovestaff.R;
 import love.wintrue.com.lovestaff.base.BaseActivity;
+import love.wintrue.com.lovestaff.ui.setting.MyCollectListActivity;
 import love.wintrue.com.lovestaff.utils.ActivityUtil;
 import love.wintrue.com.lovestaff.widget.actionbar.CommonActionBar;
 
@@ -93,6 +94,7 @@ public class MineActivity extends BaseActivity {
             case R.id.mine_wdhf:
                 break;
             case R.id.mine_wdsc:
+                ActivityUtil.next(MineActivity.this, MyCollectListActivity.class);
                 break;
             case R.id.mine_wdqz:
                 break;
