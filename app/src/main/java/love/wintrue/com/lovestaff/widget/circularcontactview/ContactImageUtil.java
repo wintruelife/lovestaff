@@ -2,6 +2,7 @@ package love.wintrue.com.lovestaff.widget.circularcontactview;
 
 import android.annotation.TargetApi;
 import android.content.ContentResolver;
+import android.content.ContentUris;
 import android.content.Context;
 import android.content.res.AssetFileDescriptor;
 import android.graphics.Bitmap;
@@ -13,6 +14,7 @@ import android.provider.ContactsContract;
 import java.io.FileDescriptor;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 
 public class ContactImageUtil {
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
@@ -162,6 +164,15 @@ public class ContactImageUtil {
 
         // If the decoding failed, returns null
         return null;
+    }
+
+    public static Bitmap getContactPhotoThumbnail(Context context, String contactId) {
+        // 获得联系人图片，读取的是Data类中的data15字段
+        Uri uri = ContentUris.withAppendedId(ContactsContract.Contacts.CONTENT_URI,
+                Long.parseLong(contactId));
+        InputStream input = ContactsContract.Contacts.openContactPhotoInputStream(context.getContentResolver(), uri);
+        Bitmap contactPhoto = BitmapFactory.decodeStream(input);
+        return contactPhoto;
     }
 
     public static Bitmap decodeSampledBitmapFromDescriptor(

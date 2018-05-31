@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/title_bg"
+    android:orientation="vertical">
+
+    <love.wintrue.com.lovestaff.widget.actionbar.CommonActionBar
+        android:id="@+id/title_actionbar_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/dimension_30">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/dimension_30"
+            android:background="@drawable/left_right_radius_bg"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_contact_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimension_38"
+                android:text="张三"
+                android:textColor="@color/color_242424"
+                android:textSize="@dimen/dimension_16" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginLeft="@dimen/dimension_15"
+                android:layout_marginRight="@dimen/dimension_15"
+                android:layout_marginTop="@dimen/dimension_12"
+                android:background="@color/color_BEBEBE" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimension_15"
+                android:layout_marginTop="@dimen/dimension_18"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/dimension_18"
+                    android:layout_height="@dimen/dimension_20"
+                    android:layout_marginTop="2dp"
+                    android:src="@mipmap/icon_call" />
+
+                <TextView
+                    android:id="@+id/tv_contact_phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dimension_14"
+                    android:text="13778909856"
+                    android:textColor="@color/color_242424"
+                    android:textSize="@dimen/dimension_16" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimension_15"
+                android:layout_marginTop="@dimen/dimension_18"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/dimension_18"
+                    android:layout_height="@dimen/dimension_20"
+                    android:layout_marginTop="2dp"
+                    android:src="@mipmap/icon_gwb" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dimension_14"
+                    android:text="成都云图控股股份有限公司"
+                    android:textColor="@color/color_242424"
+                    android:textSize="@dimen/dimension_16" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimension_15"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginTop="3dp"
+                    android:text="运营部 | 运营经理"
+                    android:textColor="@color/color_969696"
+                    android:textSize="@dimen/dimension_12" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginLeft="@dimen/dimension_15"
+                android:layout_marginRight="@dimen/dimension_15"
+                android:layout_marginTop="@dimen/dimension_12"
+                android:background="@color/color_BEBEBE" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimension_15"
+                android:layout_marginTop="@dimen/dimension_18"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/dimension_18"
+                    android:layout_height="@dimen/dimension_20"
+                    android:layout_marginTop="2dp"
+                    android:src="@mipmap/icon_email" />
+
+                <TextView
+                    android:id="@+id/tv_contact_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dimension_14"
+                    android:text="darrel.shields@live.com"
+                    android:textColor="@color/color_242424"
+                    android:textSize="@dimen/dimension_16" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginLeft="@dimen/dimension_15"
+                android:layout_marginRight="@dimen/dimension_15"
+                android:layout_marginTop="@dimen/dimension_18"
+                android:background="@color/color_BEBEBE" />
+        </LinearLayout>
+
+        <love.wintrue.com.lovestaff.widget.circularcontactview.CircularContactView
+            android:id="@+id/iv_contact_avatar"
+            android:layout_width="@dimen/dimension_60"
+            android:layout_height="@dimen/dimension_60"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/user_logo"
+            app:border_color="@color/white"
+            app:border_width="2dp" />
+    </FrameLayout>
+</LinearLayout>

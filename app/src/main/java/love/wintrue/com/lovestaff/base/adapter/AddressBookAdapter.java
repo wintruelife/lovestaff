@@ -2,7 +2,6 @@ package love.wintrue.com.lovestaff.base.adapter;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.media.ThumbnailUtils;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -15,6 +14,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.SimpleTarget;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -25,8 +26,6 @@ import love.wintrue.com.lovestaff.bean.AddressBookItemBean;
 import love.wintrue.com.lovestaff.widget.circularcontactview.AsyncTaskEx;
 import love.wintrue.com.lovestaff.widget.circularcontactview.AsyncTaskThreadPool;
 import love.wintrue.com.lovestaff.widget.circularcontactview.CircularContactView;
-import love.wintrue.com.lovestaff.widget.circularcontactview.ContactImageUtil;
-import love.wintrue.com.lovestaff.widget.circularcontactview.ImageCache;
 
 public class AddressBookAdapter extends me.yokeyword.indexablerv.IndexableAdapter<AddressBookItemBean> implements Filterable {
     private LayoutInflater mInflater;
@@ -78,12 +77,58 @@ public class AddressBookAdapter extends me.yokeyword.indexablerv.IndexableAdapte
                     into(vh.ivAddressBook);
         } else {
             boolean hasPhoto = !TextUtils.isEmpty(entity.getAvatarUrl());
-            if (vh.updateTask != null && !vh.updateTask.isCancelled())
-                vh.updateTask.cancel(true);
-            final Bitmap cachedBitmap = hasPhoto ? ImageCache.INSTANCE.getBitmapFromMemCache(entity.getAvatarUrl()) : null;
-            if (cachedBitmap != null)
-                vh.rlvNameView.setImageBitmap(cachedBitmap);
-            else {
+//            if (vh.updateTask != null && !vh.updateTask.isCancelled())
+//                vh.updateTask.cancel(true);
+//            final Bitmap cachedBitmap = hasPhoto ? ImageCache.INSTANCE.getBitmapFromMemCache(entity.getAvatarUrl()) : null;
+//            if (cachedBitmap != null)
+//                vh.rlvNameView.setImageBitmap(cachedBitmap);
+//            else {
+//                final int backgroundColorToUse = PHOTO_TEXT_BACKGROUND_COLORS[holder.getAdapterPosition()
+//                        % PHOTO_TEXT_BACKGROUND_COLORS.length];
+//                if (TextUtils.isEmpty(entity.getName()))
+//                    vh.rlvNameView.setImageResource(R.drawable.user_logo,
+//                            backgroundColorToUse);
+//                else {
+//                    final String characterToShow = TextUtils.isEmpty(entity.getName()) ? "" : entity.getName().substring(0, 1).toUpperCase(Locale.getDefault());
+//                    vh.rlvNameView.setTextAndBackgroundColor(characterToShow, backgroundColorToUse);
+//                }
+            if (hasPhoto) {
+                SimpleTarget target = new SimpleTarget<Bitmap>() {
+                    @Override
+                    public void onResourceReady(Bitmap bitmap, GlideAnimation glideAnimation) {
+                        vh.rlvNameView.setImageBitmap(bitmap);
+                    }
+                };
+
+                Glide.with(mContext).load(entity.getAvatarUrl()).asBitmap()
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .placeholder(R.drawable.bg_jz)
+                        .error(R.drawable.bg_jz)
+                        .into(target);
+//                    vh.updateTask = new AsyncTaskEx<Void, Void, Bitmap>() {
+//
+//                        @Override
+//                        public Bitmap doInBackground(final Void... params) {
+//                            if (isCancelled())
+//                                return null;
+//                            final Bitmap b = ContactImageUtil.getContactPhotoThumbnail(mContext, entity.getContactId());
+//                            if (b != null)
+//                                return ThumbnailUtils.extractThumbnail(b, CONTACT_PHOTO_IMAGE_SIZE,
+//                                        CONTACT_PHOTO_IMAGE_SIZE);
+//                            return null;
+//                        }
+//
+//                        @Override
+//                        public void onPostExecute(final Bitmap result) {
+//                            super.onPostExecute(result);
+//                            if (result == null)
+//                                return;
+//                            ImageCache.INSTANCE.addBitmapToCache(entity.getAvatarUrl(), result);
+//                            vh.rlvNameView.setImageBitmap(result);
+//                        }
+//                    };
+//                    mAsyncTaskThreadPool.executeAsyncTask(vh.updateTask);
+            } else {
                 final int backgroundColorToUse = PHOTO_TEXT_BACKGROUND_COLORS[holder.getAdapterPosition()
                         % PHOTO_TEXT_BACKGROUND_COLORS.length];
                 if (TextUtils.isEmpty(entity.getName()))
@@ -92,33 +137,10 @@ public class AddressBookAdapter extends me.yokeyword.indexablerv.IndexableAdapte
                 else {
                     final String characterToShow = TextUtils.isEmpty(entity.getName()) ? "" : entity.getName().substring(0, 1).toUpperCase(Locale.getDefault());
                     vh.rlvNameView.setTextAndBackgroundColor(characterToShow, backgroundColorToUse);
-                }
-                if (hasPhoto) {
-                    vh.updateTask = new AsyncTaskEx<Void, Void, Bitmap>() {
-
-                        @Override
-                        public Bitmap doInBackground(final Void... params) {
-                            if (isCancelled())
-                                return null;
-                            final Bitmap b = ContactImageUtil.loadContactPhotoThumbnail(mContext, entity.getAvatarUrl(), CONTACT_PHOTO_IMAGE_SIZE);
-                            if (b != null)
-                                return ThumbnailUtils.extractThumbnail(b, CONTACT_PHOTO_IMAGE_SIZE,
-                                        CONTACT_PHOTO_IMAGE_SIZE);
-                            return null;
-                        }
-
-                        @Override
-                        public void onPostExecute(final Bitmap result) {
-                            super.onPostExecute(result);
-                            if (result == null)
-                                return;
-                            ImageCache.INSTANCE.addBitmapToCache(entity.getAvatarUrl(), result);
-                            vh.rlvNameView.setImageBitmap(result);
-                        }
-                    };
-                    mAsyncTaskThreadPool.executeAsyncTask(vh.updateTask);
+                    entity.setBackgroundColor(backgroundColorToUse);
                 }
             }
+//            }
         }
     }
 

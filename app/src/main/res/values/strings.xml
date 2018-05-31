@@ -59,4 +59,7 @@
     <string name="picture_from_camera">拍照</string>
     <string name="picture_from_album">选择本地图片</string>
     <string name="image_select_crop_img">正在剪切图片&#8230;</string>
+
+    <string name="contact_detail_edit">编辑</string>
+    <string name="contact_edit_save">保存</string>
 </resources>

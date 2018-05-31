@@ -18,6 +18,7 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.OnClick;
+import jp.wasabeef.glide.transformations.CropCircleTransformation;
 import love.wintrue.com.lovestaff.R;
 import love.wintrue.com.lovestaff.base.BaseActivity;
 import love.wintrue.com.lovestaff.widget.ClearEditText;
@@ -93,6 +94,7 @@ public class ImproveInformationActivity extends BaseActivity {
                     .centerCrop()
                     .placeholder(R.mipmap.img_user_default)
                     .error(R.mipmap.img_user_default)
+                    .bitmapTransform(new CropCircleTransformation(THIS))
                     .crossFade().into(ivAvatar);
         }
     }
